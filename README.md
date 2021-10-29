@@ -36,8 +36,6 @@ Tuesday
 Wednesday
 Thursday Morning
 
-You should also be aware that presentations will be Thursday afternoon, and deploying your project to GitHub Pages or Heroku will take some time Thursday morning, so don't plan much for that morning.
-
 ## Bonus Features
 
 TBA
