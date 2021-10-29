@@ -18,6 +18,7 @@ In addition, this project will include:
 - A background of the game along with various features
 
 ## Wireframes
+![wireframe](https://wireframe.cc/AfBX3y)
 - On the bottom left contains links. Links will contain my contact information such as my Github Repo and LinkedIn
 - Controls will include instructions about to how start and play the game, as well as how to pause or restart
 - On the right contains a music button which is disabled by default, but clicking on it will enable the music
