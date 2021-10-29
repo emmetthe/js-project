@@ -30,11 +30,11 @@ In addition, this project will include:
  - HTML / CSS
 ## Implementation Timeline
 
-Day 1: Start creating classes and implementing game logic
-Day 2: Complete game logic and implement basic UI
-Day 3: Finish up basic visuals and bug fixes
-Day 4: Add more styling to UI
-Day 5: Deploy to GitHub, edit README if any extra changes were made
+- Day 1: Start creating classes and implementing game logic
+- Day 2: Complete game logic and implement basic UI
+- Day 3: Finish up basic visuals and bug fixes
+- Day 4: Add more styling to UI
+- Day 5: Deploy to GitHub, edit README if any extra changes were made
 
 ## Bonus Features
 
