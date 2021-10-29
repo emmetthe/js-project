@@ -7,15 +7,15 @@ This project was made using vanilla Javascript and HTML Canvas. In this game, th
 
 In this project, users will be able to:
 
-- play the game with their keyboard
-- pause/restart the game at any time
-- see their current and highest score
-- shoot projectiles and incoming objects using their mouse
+- Play the game with their keyboard
+- Pause/restart the game at any time
+- See their current and highest score
+- Shoot projectiles and incoming objects using their mouse
 
 In addition, this project will include:
 
-- a README
-- a background of the game along with various features
+- A README
+- A background of the game along with various features
 
 ## Wireframes
 - On the bottom left contains links. Links will contain my contact information such as my Github Repo and LinkedIn
@@ -30,11 +30,11 @@ In addition, this project will include:
  - HTML / CSS
 ## Implementation Timeline
 
-Friday Afternoon & Weekend
-Monday
-Tuesday
-Wednesday
-Thursday Morning
+Day 1: Start creating classes and implementing game logic
+Day 2: Complete game logic and implement basic UI
+Day 3: Finish up basic visuals and bug fixes
+Day 4: Add more styling to UI
+Day 5: Deploy to GitHub, edit README if any extra changes were made
 
 ## Bonus Features
 
