@@ -34,9 +34,19 @@ export default class Player {
     }
     if (this.keys["ArrowLeft"] && this.x > 15) {
       this.x -= this.speed;
+      this.frameY = 1;
     }
     if (this.keys["ArrowRight"] && this.x < 500) {
       this.x += this.speed;
+      this.frameY = 0;
+    }
+  }
+
+  playerWalkAnimation() {
+    if(this.frameX < 4 && this.moving) {
+      this.frameX++;
+    } else {
+      this.frameX = 0;
     }
   }
 
