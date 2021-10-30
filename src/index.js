@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   canvasEl.width = 600;
   canvasEl.height = 800;
 
-  const player = new Player(300, 400, 65.2, 90, 0, 0, 5, false, false, "./imgs/walkLR.png")
-  console.log(player.playerImg)
+  const player = new Player(300, 400, 65, 100, 0, 0, 6, false, false, "./imgs/player.png")
   const background = new Image();
   background.src = "./imgs/background.jpg";
   
@@ -31,7 +30,15 @@ document.addEventListener("DOMContentLoaded", function () {
     startTime = then;
     animate(); 
   }
-
+  
+  window.addEventListener("keydown", function(e) {
+    // console.log(e.code)
+    player.addMove(e.code);
+  });
+  window.addEventListener("keyup", function(e) {
+    player.deleteMove(e.code);
+  });
+  
   function animate() {
     requestAnimationFrame(animate);
     now = Date.now();
@@ -46,15 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
       requestAnimationFrame(animate);
     }
   }
-  startAnimation(25);
-
-  window.addEventListener("keydown", function(e) {
-    console.log(e.code)
-    player.addMove(e.code);
-  });
-  window.addEventListener("keyup", function(e) {
-    player.deleteMove(e.code);
-  });
-
+  startAnimation(20);
   
 });
