@@ -3,6 +3,8 @@ import Projectile from './scripts/projectile';
 import ProjectileHandler from './scripts/projectileHandler';
 import Enemy from './scripts/enemy';
 import EnemyHandler from './scripts/enemyHandler';
+import Chicken from './scripts/chicken';
+import ChickenHandler from './scripts/chickenHandler';
 
 document.addEventListener('DOMContentLoaded', function () {
   const canvasEl = document.getElementById('canvas');
@@ -14,7 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const player = new Player(300, 400, 65, 100, 0, 0, 8, false, false, './imgs/player.png');
   const background = new Image();
   background.src = './imgs/background.jpg';
+  const projectileHandler = new ProjectileHandler();
   const enemyTruck = new EnemyHandler();
+  const chickenMob = new ChickenHandler();
 
   // image, s = source location starting from top left down right, sW(player width), sH(player height), d = destination of where to draw image
 
@@ -25,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
     startTime = then;
     animate();
   }
-  const projectileHandler = new ProjectileHandler();
 
   function startAtt() {
     if (player.keys['Space']) {
@@ -42,6 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(() => {
       enemyTruck.enemies.push(new Enemy(100, 100, './imgs/truck.png'));
     }, 3000);
+  }
+
+  function spawnChicken() {
+    setInterval(() => {
+      chickenMob.chickens.push(new Chicken(canvasEl.height));
+    }, 2500);
   }
 
   function animate() {
@@ -65,11 +74,13 @@ document.addEventListener('DOMContentLoaded', function () {
       );
       projectileHandler.updateProjectiles(ctx);
       enemyTruck.update(ctx);
+      chickenMob.update(ctx);
       player.movePlayer();
       player.playerWalkAnimation();
       requestAnimationFrame(animate);
     }
   }
+  spawnChicken(ctx);
   spawnEnemy(ctx);
   startAnimation(20);
 
@@ -85,4 +96,9 @@ document.addEventListener('DOMContentLoaded', function () {
     player.deleteMove(e.code);
     player.deleteAttack();
   });
+
+  // window.addEventListener('resize', function () {
+  //   canvas.width = 1000;
+  //   canvas.height = 500;
+  // });
 });
