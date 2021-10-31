@@ -1,3 +1,4 @@
+import Projectile from "./projectile.js"
 
 export default class Player {
   constructor (x, y, width, height, frameX, frameY, speed, moving, attacking, src) {
@@ -54,4 +55,12 @@ export default class Player {
     }
   }
 
+  addAttack() {
+    this.attacking = true;
+  }
+
+  deleteAttack() {
+    this.attacking = false;
+  }
+  
 }
