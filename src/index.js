@@ -1,7 +1,7 @@
 import Player from './scripts/player';
 import Projectile from './scripts/projectile';
 import ProjectileHandler from './scripts/projectileHandler';
-import Enemy from './scripts/enemy';
+// import Enemy from './scripts/enemy';
 
 document.addEventListener('DOMContentLoaded', function () {
   const canvasEl = document.getElementById('canvas');
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const player = new Player(300, 400, 65, 100, 0, 0, 6, false, false, './imgs/player.png');
   const background = new Image();
   background.src = './imgs/background.jpg';
-  const enemyTruck = new Enemy(100, 100, './imgs/truck.png');
+  // const enemyTruck = new Enemy(100, 100, './imgs/truck.png');
 
   // image, s = source location starting from top left down right, sW(player width), sH(player height), d = destination of where to draw image
 
