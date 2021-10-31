@@ -34,23 +34,53 @@ document.addEventListener('DOMContentLoaded', function () {
     if (player.keys['Space']) {
       player.attacking = true;
       if (player.isFacingLeft()) {
-        projectileHandler.projectiles.push(new Projectile(player.x - 12, player.y + 50, './imgs/featherL.png', 'left'));
+        projectileHandler.list.push(new Projectile(player.x - 12, player.y + 50, './imgs/featherL.png', 'left'));
       } else if (player.isFacingRight()) {
-        projectileHandler.projectiles.push(new Projectile(player.x + 45, player.y + 50, './imgs/featherR.png', 'right'));
+        projectileHandler.list.push(new Projectile(player.x + 45, player.y + 50, './imgs/featherR.png', 'right'));
       }
     }
   }
 
   function spawnEnemy() {
     setInterval(() => {
-      enemyTruck.enemies.push(new Enemy(100, 100, './imgs/truck.png'));
+      enemyTruck.list.push(new Enemy(canvasEl.width, 90, 67, './imgs/truck.png', 1));
     }, 3000);
   }
 
   function spawnChicken() {
     setInterval(() => {
-      chickenMob.chickens.push(new Chicken(canvasEl.height));
+      chickenMob.list.push(new Chicken(canvasEl.height));
     }, 2500);
+  }
+
+  function isCollide(first, second) {
+    if (
+      !(
+        first.x > second.x + second.width ||
+        first.x + first.width < second.x ||
+        first.y > second.y + second.height ||
+        first.y + first.height < second.y
+      )
+    ) {
+      return true;
+    }
+  }
+
+  function checkCollision(object, enemy) {
+    const objectArr = object.list;
+    const enemyArr = enemy.list;
+    for (let i = 0; i < objectArr.length; i++) {
+      for (let j = 0; j < enemyArr.length; j++) {
+        if (enemyArr[j] && objectArr[i] && isCollide(objectArr[i], enemyArr[j])) {
+          enemyArr[j].life -= 1;
+          objectArr.splice(i, 1);
+          if (enemyArr[j].life <= 0) {
+            enemyArr.splice(j, 1);
+          }
+          i--;
+        }
+      }
+    }
   }
 
   function animate() {
@@ -72,6 +102,10 @@ document.addEventListener('DOMContentLoaded', function () {
         player.width,
         player.height
       );
+      checkCollision(chickenMob, enemyTruck);
+      checkCollision(projectileHandler, enemyTruck);
+      // chickenCollision(enemyTruck);
+      // projectileCollision(enemyTruck);
       projectileHandler.updateProjectiles(ctx);
       enemyTruck.update(ctx);
       chickenMob.update(ctx);

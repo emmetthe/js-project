@@ -9,6 +9,7 @@ export default class Chicken {
     this.frameY = 0;
     this.chickenImg = new Image();
     this.chickenImg.src = "./imgs/vonbon.png";
+    this.life = 1;
   }
 
 }

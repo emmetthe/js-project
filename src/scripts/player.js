@@ -1,5 +1,3 @@
-import Projectile from './projectileHandler.js';
-
 export default class Player {
   constructor(x, y, width, height, frameX, frameY, speed, moving, attacking, src) {
     this.x = x; // player start pos x
@@ -14,6 +12,7 @@ export default class Player {
     this.playerImg = new Image();
     this.playerImg.src = src;
     this.keys = {};
+    this.life = 5;
   }
 
   addMove(move) {

@@ -1,6 +1,6 @@
 export default class Enemy {
-  constructor(width, height, src) {
-    this.x = 570;
+  constructor(x, width, height, src, life) {
+    this.x = x;
     this.y = Math.floor(Math.random() * 560 + 60);
     this.width = width;
     this.height = height;
@@ -9,6 +9,8 @@ export default class Enemy {
     this.frameY = 0;
     this.enemyImg = new Image();
     this.enemyImg.src = src;
+    this.life = life;
+    this.dmg = 1;
   }
 
 }

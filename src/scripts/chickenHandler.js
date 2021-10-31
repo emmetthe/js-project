@@ -1,6 +1,6 @@
 export default class ChickenHandler {
   constructor() {
-    this.chickens = [];
+    this.list = [];
   }
 
   draw(ctx, chicken) {
@@ -18,7 +18,7 @@ export default class ChickenHandler {
   }
 
   update(ctx) {
-    this.chickens.forEach((chicken) => {
+    this.list.forEach((chicken) => {
       this.draw(ctx, chicken);
       chicken.y -= chicken.speed;
     });

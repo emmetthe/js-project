@@ -1,6 +1,6 @@
 export default class ProjectileHandler {
   constructor() {
-    this.projectiles = [];
+    this.list = [];
   }
 
   draw(ctx, projectile) {
@@ -18,7 +18,7 @@ export default class ProjectileHandler {
   }
 
   updateProjectiles(ctx) {
-    this.projectiles.forEach((projectile) => {
+    this.list.forEach((projectile) => {
       if (projectile.direction === 'right') {
         this.draw(ctx, projectile);
         projectile.x += projectile.speed;

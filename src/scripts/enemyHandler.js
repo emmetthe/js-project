@@ -1,6 +1,6 @@
 export default class Enemy {
   constructor() {
-    this.enemies = [];
+    this.list = [];
   }
 
   draw(ctx, enemy) {
@@ -18,7 +18,7 @@ export default class Enemy {
   }
 
   update(ctx) {
-    this.enemies.forEach((enemy) => {
+    this.list.forEach((enemy) => {
       this.draw(ctx, enemy);
       enemy.x -= enemy.speed;
     });
