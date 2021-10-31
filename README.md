@@ -1,7 +1,7 @@
 # js-project
 
 ## Background
-This project was made using vanilla Javascript and HTML Canvas. In this game, the player will use their keyboard to move around(WASD for up, left, down, right respectively). The goal of this game is to allow the chickens to successfully cross the road. The player will have to prevent incoming objects from hitting the chickens by shooting the objects down. Everytime a chicken does not make it across the road, the player loses a life. The game will end when the player has run out of lives.
+This project was made using vanilla Javascript and HTML Canvas. In this game, the player will use their arrow keys on their keyboard to move around. The goal of this game is to allow the chickens to successfully cross the road. The player will have to prevent incoming objects from hitting the chickens by shooting the objects down. Everytime a chicken does not make it across the road, the player loses a life. The game will end when the player has run out of lives.
 
 ## Functionality & MVPs
 
@@ -26,7 +26,7 @@ In addition, this project will include:
 - The top left corner displays the number of lives the player has left
 
 ## Technologies, Libraries, APIs
- - Canvas API to render the game
+ - Canvas API
  - JavaScript
  - HTML / CSS
 ## Implementation Timeline
