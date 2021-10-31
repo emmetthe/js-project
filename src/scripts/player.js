@@ -31,7 +31,7 @@ export default class Player {
       this.y -= this.speed;
       this.moving = true;
     }
-    if (this.keys['ArrowDown'] && this.y < 650) {
+    if (this.keys['ArrowDown'] && this.y < 630) {
       this.y += this.speed;
       this.moving = true;
     }

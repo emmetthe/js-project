@@ -1,7 +1,8 @@
 import Player from './scripts/player';
 import Projectile from './scripts/projectile';
 import ProjectileHandler from './scripts/projectileHandler';
-// import Enemy from "./scripts/enemies"
+import Enemy from './scripts/enemy';
+
 document.addEventListener('DOMContentLoaded', function () {
   const canvasEl = document.getElementById('canvas');
   const ctx = canvasEl.getContext('2d');
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const player = new Player(300, 400, 65, 100, 0, 0, 6, false, false, './imgs/player.png');
   const background = new Image();
   background.src = './imgs/background.jpg';
+  const enemyTruck = new Enemy(100, 100, './imgs/truck.png');
 
   // image, s = source location starting from top left down right, sW(player width), sH(player height), d = destination of where to draw image
 
@@ -28,19 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (player.keys['Space']) {
       player.attacking = true;
       if (player.isFacingLeft()) {
-        projectileHandler.projectiles.push(new Projectile(player.x - 25, player.y + 50, './imgs/featherLeft.png', 'left')); // change pos
+        projectileHandler.projectiles.push(new Projectile(player.x - 12, player.y + 50, './imgs/featherL.png', 'left'));
       } else if (player.isFacingRight()) {
-        projectileHandler.projectiles.push(new Projectile(player.x + 45, player.y + 50, './imgs/featherRight.png', 'right'));
+        projectileHandler.projectiles.push(new Projectile(player.x + 45, player.y + 50, './imgs/featherR.png', 'right'));
       }
     }
   }
-
-  // const enemies = [];
-  // function spawnEnemy() {
-  //   setInterval(() => {
-  //     enemies.push(new Enemy)
-  //   }, 1000)
-  // }
 
   function animate() {
     requestAnimationFrame(animate);
@@ -62,9 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
         player.height
       );
       projectileHandler.updateProjectiles(ctx);
-      // enemies.forEach((enemy) => {
-      //   enemy.update();
-      // })
+      // enemyTruck.spawnEnemy(ctx);
+      // enemyTruck.update();
       player.movePlayer();
       player.playerWalkAnimation();
       requestAnimationFrame(animate);
