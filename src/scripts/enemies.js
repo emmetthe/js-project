@@ -1,32 +1,29 @@
 export default class Enemy {
-    constructor() {
-      this.x = x;
-      this.y = y*1.1;
-      this.direction = direction;
-      this.width = 30;
-      this.height = 30;
-      this.speed = 9;
-      this.frameX = 0;
-      this.frameY = 0;
-      this.projectileImg = new Image();
-      this.projectileImg.src = "./imgs/arrow.png";
-    }
-
-    spawn() {
-
-    }
-    
-    draw() {
-      this.drawImage(this.projectileImg, this.width * this.frameX, this.height * this.frameY, this.width, this.height, this.x, this.y, this.width, this.height);
-    }
-  
-    update() {
-      if (this.direction === "right") {
-        this.draw();
-        this.x += this.speed;
-      } else if (this.direction === "left") {
-        this.draw();
-        this.x -= this.speed;
-      }
-    }
+  constructor() {
+    this.x = x;
+    this.y = y;
+    this.direction = direction;
+    this.width = 30;
+    this.height = 30;
+    this.speed = Math.random() * 1.5 + 10;
+    this.frameX = 0;
+    this.frameY = 0;
+    this.projectileImg = new Image();
+    this.projectileImg.src = './imgs/truck.png';
+    this.enemy = [];
   }
+
+  spawnEnemy() {
+    setInterval(() => {
+      this.enemy.push(new Enemy());
+    }, 1000);
+  }
+
+  // draw() {
+  //   this.drawImage(this.projectileImg, this.width * this.frameX, this.height * this.frameY, this.width, this.height, this.x, this.y, this.width, this.height);
+  // }
+
+  update() {
+    this.x -= this.speed;
+  }
+}
