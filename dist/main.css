@@ -9,5 +9,6 @@
 
 #canvas {
   position: absolute;
+  top: 10%;
   transform: scale(1);
 }

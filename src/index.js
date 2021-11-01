@@ -1,10 +1,10 @@
 import Game from './scripts/game';
 
 document.addEventListener('DOMContentLoaded', function () {
-  const canvasEl = document.getElementById('canvas');
-  const ctx = canvasEl.getContext('2d');
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
 
-  const game = new Game(ctx, canvasEl);
+  const game = new Game(ctx, canvas);
 
   let fps, fpsInterval, startTime, now, then, elapsed;
   function startAnimation(fps) {
@@ -15,32 +15,36 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function animate() {
-    requestAnimationFrame(animate);
-    now = Date.now();
-    elapsed = now - then;
-    if (elapsed > fpsInterval && !game.isgameOver()) {
-      then = now - (elapsed % fpsInterval);
-      ctx.clearRect(0, 0, game.width, game.height);
-      ctx.drawImage(game.background, 0, 0, game.width, game.height);
-      ctx.drawImage(
-        game.player.playerImg,
-        game.player.frameX * game.player.width,
-        game.player.frameY * game.player.height,
-        game.player.width,
-        game.player.height,
-        game.player.x,
-        game.player.y,
-        game.player.width,
-        game.player.height
-      );
-      game.startGame(ctx);
+    if (!game.restartStatus) {
       requestAnimationFrame(animate);
+      now = Date.now();
+      elapsed = now - then;
+      if (elapsed > fpsInterval && !game.isgameOver()) {
+        then = now - (elapsed % fpsInterval);
+        ctx.clearRect(0, 0, game.width, game.height);
+        ctx.drawImage(game.background, 0, 0, game.width, game.height);
+        ctx.drawImage(
+          game.player.playerImg,
+          game.player.frameX * game.player.width,
+          game.player.frameY * game.player.height,
+          game.player.width,
+          game.player.height,
+          game.player.x,
+          game.player.y,
+          game.player.width,
+          game.player.height
+        );
+        game.spawnChicken();
+        game.spawnEnemy();
+        game.startGame(ctx);
+        game.increaseDifficulty();
+        // game.gameStatus();
+        requestAnimationFrame(animate);
+      }
     }
   }
-  game.increaseDifficulty();
-  game.spawnEnemy(ctx);
-  game.spawnChicken(ctx);
-  startAnimation(20);
+
+  startAnimation(20)
 
   window.addEventListener('keydown', (e) => {
     // console.log(e.code);
@@ -54,5 +58,4 @@ document.addEventListener('DOMContentLoaded', function () {
     game.player.deleteMove(e.code);
     game.player.deleteAttack();
   });
-
 });

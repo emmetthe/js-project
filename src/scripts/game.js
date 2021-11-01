@@ -24,7 +24,10 @@ export default class Game {
     this.life = new Image();
     this.life.src = './imgs/egg.png';
     this.restartStatus = false;
-    this.frame = 0;
+    this.currentFrame = 0;
+    this.chickensPerFrame = 50;
+    this.enemyTruckPerFrame = 54;
+    this.frameToChangeDifficulty = 63;
   }
 
   startAtt() {
@@ -39,21 +42,21 @@ export default class Game {
   }
 
   spawnEnemy() {
-    let enemyInt = setInterval(() => {
+    if (this.currentFrame % this.enemyTruckPerFrame === 0) {
       this.enemyHandler.list.push(new Enemy(this.canvas, 90, 67, './imgs/truck.png', 1, 3));
-      if(this.gameOver) {
-        clearInterval(enemyInt);
-      }
-    }, 2500);
+    }
+    // const enemyInt = setInterval(() => {
+    //   this.enemyHandler.list.push(new Enemy(this.canvas, 90, 67, './imgs/truck.png', 1, 3));
+    //   if (this.player.life === 0) {
+    //     clearInterval(enemyInt);
+    //   }
+    // }, 2500);
   }
 
   spawnChicken() {
-   let chickenInt = setInterval(() => {
+    if (this.currentFrame % this.chickensPerFrame === 0) {
       this.chickenMob.list.push(new Chicken(this.height));
-      if(this.gameOver) {
-        clearInterval(chickenInt);
-      }
-    }, 2700);
+    }
   }
 
   isCollide(first, second) {
@@ -130,17 +133,10 @@ export default class Game {
   }
 
   increaseDifficulty() {
-    let increaseDiffInt = setInterval(() => {
-      this.drawScore();
-      if (this.score > 1) {
-        setTimeout(() => {
-          this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 90, 90, './imgs/wolf.png', 2, 3, 4));
-          if(this.gameOver) {
-            clearInterval(increaseDiffInt);
-          }
-        }, 2000);
-      }
-    }, 2000);
+    if (this.currentFrame % this.frameToChangeDifficulty === 0 && this.score > 10) {
+      this.enemyTruckPerFrame = 50;
+      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 90, 90, './imgs/wolf.png', 2, 3, 4));
+    }
   }
 
   isgameOver() {
@@ -162,7 +158,6 @@ export default class Game {
   }
 
   restartGame() {
-    this.ctx.clearRect(0, 0, this.width, this.height);
     this.player.life = 5;
     this.player.list = [];
     this.enemyHandler.list = [];
@@ -170,26 +165,8 @@ export default class Game {
     this.chickenMob.list = [];
     this.score = 0;
     this.gameOver = false;
-    this.restartStatus = true;
-    clearInterval(this.spawnChicken());
-    clearInterval(this.spawnEnemy());
-    clearInterval(this.increaseDifficulty());
-  }
-
-  startGame(ctx) {
-    this.checkCollision(this.chickenMob, this.enemyHandler);
-    this.checkCollision(this.projectileHandler, this.enemyHandler);
-    this.playerCollision(this.enemyHandler);
-    this.drawScore();
-    this.updateScore();
-    this.updateLife();
-    // this.enemyHandler.enemyWalkAnimation();
-    this.projectileHandler.updateProjectiles(ctx);
-    this.enemyHandler.update(ctx);
-    this.chickenMob.update(ctx);
-    this.player.movePlayer();
-    this.player.playerWalkAnimation();
-    this.gameStatus();
+    this.restartStatus = false;
+    this.currentFrame = 0;
   }
 
   gameStatus() {
@@ -199,9 +176,31 @@ export default class Game {
       this.ctx.font = '60px Arial';
       this.ctx.fillText('GAME OVER', 100, 200);
       let restartButton = document.getElementById('restart');
+      restartButton.style.display = 'block';
       restartButton.addEventListener('click', (e) => {
+        restartButton.style.display = 'none';
         this.restartGame();
       });
+    }
+  }
+
+  startGame(ctx) {
+    if (!this.gameOver) {
+      this.checkCollision(this.chickenMob, this.enemyHandler);
+      this.checkCollision(this.projectileHandler, this.enemyHandler);
+      this.playerCollision(this.enemyHandler);
+      this.drawScore();
+      this.updateScore();
+      this.updateLife();
+      this.isgameOver();
+      // this.enemyHandler.enemyWalkAnimation();
+      this.projectileHandler.updateProjectiles(ctx);
+      this.enemyHandler.update(ctx);
+      this.chickenMob.update(ctx);
+      this.player.movePlayer();
+      this.player.playerWalkAnimation();
+      this.gameStatus();
+      this.currentFrame += 1;
     }
   }
 }
