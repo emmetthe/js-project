@@ -19,6 +19,7 @@ export default class Game {
     this.projectileHandler = new ProjectileHandler();
     this.enemyHandler = new EnemyHandler();
     this.chickenMob = new ChickenHandler();
+    // this.enemyWolf = new EnemyWithAnimation(this.canvas, 76, 60, './imgs/wolf.png', 2, 3, 1)
     this.score = 0;
     this.gameOver = false;
     this.life = new Image();
@@ -27,7 +28,7 @@ export default class Game {
     this.currentFrame = 0;
     this.chickensPerFrame = 50;
     this.enemyTruckPerFrame = 54;
-    this.frameToChangeDifficulty = 63;
+    this.level1DifficultyFrame = 63;
   }
 
   startAtt() {
@@ -133,9 +134,13 @@ export default class Game {
   }
 
   increaseDifficulty() {
-    if (this.currentFrame % this.frameToChangeDifficulty === 0 && this.score > 10) {
-      this.enemyTruckPerFrame = 50;
-      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 90, 90, './imgs/wolf.png', 2, 3, 4));
+    if (this.currentFrame % this.level1DifficultyFrame === 0 && this.score > 1) {
+      this.enemyTruckPerFrame = 50; 
+      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 93, 60, './imgs/wolf.png', 2, 3, 5, 2));
+    }
+    if(this.currentFrame % 25 === 0 && this.score > 1) {
+      this.enemyTruckPerFrame = 25;
+      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 32, 30, './imgs/jrnecki.png', 2, 2, 6, 1));
     }
   }
 
@@ -174,7 +179,7 @@ export default class Game {
       this.ctx.clearRect(0, 0, this.width, this.height);
       this.ctx.fillStyle = 'red';
       this.ctx.font = '60px Arial';
-      this.ctx.fillText('GAME OVER', 100, 200);
+      this.ctx.fillText('GAME OVER', 350, 200);
       let restartButton = document.getElementById('restart');
       restartButton.style.display = 'block';
       restartButton.addEventListener('click', (e) => {
@@ -193,7 +198,7 @@ export default class Game {
       this.updateScore();
       this.updateLife();
       this.isgameOver();
-      // this.enemyHandler.enemyWalkAnimation();
+      // this.enemyWolf.enemyWalkAnimation();
       this.projectileHandler.updateProjectiles(ctx);
       this.enemyHandler.update(ctx);
       this.chickenMob.update(ctx);

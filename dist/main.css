@@ -3,6 +3,7 @@
   \*************************************************************************************************************************************/
 #game-container {
   display: flex;
+  position: relative;
   align-content: center;
   justify-content: center;
 }
@@ -11,4 +12,8 @@
   position: absolute;
   top: 10%;
   transform: scale(1);
+}
+
+#restart {
+  position: absolute;
 }

@@ -6,6 +6,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const game = new Game(ctx, canvas);
 
+  const playButton = document.querySelector('#play_audio');
+  const pauseButton = document.querySelector('#pause_audio');
+  let audio = document.getElementById('default_audio');
+  audio.loop = true;
+  let audioPlaying = false;
+  playButton.addEventListener('click', (e) => {
+    if (!audioPlaying) {
+      audio.volume = 0.2;
+      audio.play();
+      audioPlaying = true;
+    }
+  });
+  pauseButton.addEventListener('click', (e) => {
+    if(audioPlaying) {
+      audio.pause();
+      audioPlaying = false;
+    }
+  })
+
   let fps, fpsInterval, startTime, now, then, elapsed;
   function startAnimation(fps) {
     fpsInterval = 1000 / fps;
@@ -44,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  startAnimation(20)
+  startAnimation(20);
 
   window.addEventListener('keydown', (e) => {
     // console.log(e.code);

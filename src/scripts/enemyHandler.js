@@ -15,6 +15,11 @@ export default class EnemyHandler {
       enemy.width,
       enemy.height
     );
+    // if (this.frameX < this.maxFrameX) { // number decided by col
+    //   this.frameX++;
+    // } else {
+    //   this.frameX = 0;
+    // }
   }
 
   update(ctx) {

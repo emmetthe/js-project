@@ -26,11 +26,11 @@ export default class Player {
   }
 
   movePlayer() {
-    if (this.keys['ArrowUp'] && this.y > 50) {
+    if (this.keys['ArrowUp'] && this.y > 20) {
       this.y -= this.speed;
       this.moving = true;
     }
-    if (this.keys['ArrowDown'] && this.y < canvas.height - 140) {
+    if (this.keys['ArrowDown'] && this.y < canvas.height - 159) {
       this.y += this.speed;
       this.moving = true;
     }

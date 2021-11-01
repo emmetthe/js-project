@@ -1,5 +1,5 @@
 export default class EnemyWithAnimation {
-  constructor(canvas, width, height, src, maxFrameX, life, speed) {
+  constructor(canvas, width, height, src, maxFrameX, life, speed, dmg) {
     this.x = canvas.width;
     this.y = Math.floor(Math.random() * (canvas.height - 240) + 60);
     this.width = width;
@@ -11,7 +11,7 @@ export default class EnemyWithAnimation {
     this.enemyImg = new Image();
     this.enemyImg.src = src;
     this.life = life;
-    this.dmg = 1;
+    this.dmg = dmg;
   }
 
   // enemyWalkAnimation() {
