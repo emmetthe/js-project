@@ -39,14 +39,20 @@ export default class Game {
   }
 
   spawnEnemy() {
-    setInterval(() => {
+    let enemyInt = setInterval(() => {
       this.enemyHandler.list.push(new Enemy(this.canvas, 90, 67, './imgs/truck.png', 1, 3));
+      if(this.gameOver) {
+        clearInterval(enemyInt);
+      }
     }, 2500);
   }
 
   spawnChicken() {
-    setInterval(() => {
+   let chickenInt = setInterval(() => {
       this.chickenMob.list.push(new Chicken(this.height));
+      if(this.gameOver) {
+        clearInterval(chickenInt);
+      }
     }, 2700);
   }
 
@@ -124,11 +130,14 @@ export default class Game {
   }
 
   increaseDifficulty() {
-    setInterval(() => {
+    let increaseDiffInt = setInterval(() => {
       this.drawScore();
       if (this.score > 1) {
         setTimeout(() => {
           this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 90, 90, './imgs/wolf.png', 2, 3, 4));
+          if(this.gameOver) {
+            clearInterval(increaseDiffInt);
+          }
         }, 2000);
       }
     }, 2000);
@@ -162,6 +171,9 @@ export default class Game {
     this.score = 0;
     this.gameOver = false;
     this.restartStatus = true;
+    clearInterval(this.spawnChicken());
+    clearInterval(this.spawnEnemy());
+    clearInterval(this.increaseDifficulty());
   }
 
   startGame(ctx) {
