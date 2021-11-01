@@ -1,7 +1,7 @@
 export default class Enemy {
-  constructor(x, width, height, src, life) {
-    this.x = x;
-    this.y = Math.floor(Math.random() * 560 + 60);
+  constructor(canvas, width, height, src, life) {
+    this.x = canvas.width;
+    this.y = Math.floor(Math.random() * (canvas.height - 240) + 60);
     this.width = width;
     this.height = height;
     this.speed = Math.random() * 1.5 + 3;

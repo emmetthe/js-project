@@ -1,7 +1,7 @@
 export default class Player {
-  constructor(x, y, width, height, frameX, frameY, speed, moving, attacking, src) {
-    this.x = x; // player start pos x
-    this.y = y; // player start pos y
+  constructor(canvas, width, height, frameX, frameY, speed, moving, attacking, src) {
+    this.x = canvas.width/2; // player start pos x
+    this.y = canvas.height/2; // player start pos y
     this.width = width; // width in px divide by col
     this.height = height;
     this.frameX = frameX;
@@ -30,7 +30,7 @@ export default class Player {
       this.y -= this.speed;
       this.moving = true;
     }
-    if (this.keys['ArrowDown'] && this.y < 630) {
+    if (this.keys['ArrowDown'] && this.y < canvas.height - 140) {
       this.y += this.speed;
       this.moving = true;
     }
@@ -39,7 +39,7 @@ export default class Player {
       this.frameY = 0;
       this.moving = true;
     }
-    if (this.keys['ArrowRight'] && this.x < 500) {
+    if (this.keys['ArrowRight'] && this.x < canvas.width - 60) {
       this.x += this.speed;
       this.frameY = 1;
       this.moving = true;

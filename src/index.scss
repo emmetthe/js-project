@@ -1,9 +1,16 @@
-.canvas-background {
-  position: absolute;
-  height: 100%;
+// .background {
+//   height: 100%;
+// }
+#game-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 #canvas {
-  height: 800px;
-  width: 600px;
+  position: absolute;
+  // height: 800px;
+  // width: 1100px;
+  // top: 43%;
+  transform: scale(1);
 }
