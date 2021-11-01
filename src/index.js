@@ -70,6 +70,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const objectArr = object.list;
     const enemyArr = enemy.list;
     for (let i = 0; i < objectArr.length; i++) {
+      if (objectArr === projectileHandler.list && (objectArr[i].x >= canvasEl.width || objectArr[i].x <= 10)) {
+        objectArr.splice(i, 1);
+        i--;
+      }
       for (let j = 0; j < enemyArr.length; j++) {
         if (enemyArr[j] && objectArr[i] && isCollide(objectArr[i], enemyArr[j])) {
           enemyArr[j].life -= 1;
@@ -103,10 +107,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let score = 0;
   function updateScore() {
-    let chicken = chickenMob.list
+    let chicken = chickenMob.list;
     for (let i = 0; i < chicken.length; i++) {
       if (chicken[i].y <= 40) {
-        chicken.splice(i, 1)
+        chicken.splice(i, 1);
         score += 1;
         i--;
       }
@@ -114,8 +118,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function drawScore() {
-    ctx.fillStyle = "blue"
-    ctx.font = "25px Arial"
+    ctx.fillStyle = 'blue';
+    ctx.font = '25px Arial';
     ctx.fillText('Score: ' + score, 200, 40);
     updateScore();
   }
@@ -124,9 +128,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function isgameOver() {
     if (player.life === 0) {
-      return gameOver = true;
+      return (gameOver = true);
     }
-    return gameOver = false;
+    return (gameOver = false);
   }
 
   function restartGame() {
@@ -139,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
     score = 0;
     gameOver = false;
   }
-  
+
   function gameStatus() {
     if (isgameOver()) {
       ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
