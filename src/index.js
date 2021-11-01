@@ -74,8 +74,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (enemyArr[j] && objectArr[i] && isCollide(objectArr[i], enemyArr[j])) {
           enemyArr[j].life -= 1;
           objectArr.splice(i, 1);
+          if (objectArr === chickenMob.list) {
+            player.life -= 1;
+          }
           if (enemyArr[j].life <= 0) {
             enemyArr.splice(j, 1);
+            j--;
           }
           i--;
         }
@@ -83,11 +87,54 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function playerCollision(enemy) {
+    const enemyArr = enemy.list;
+    for (let j = 0; j < enemyArr.length; j++) {
+      if (isCollide(player, enemyArr[j]) && !gameOver()) {
+        enemyArr[j].life -= 1;
+        if (enemyArr[j].life <= 0) {
+          enemyArr.splice(j, 1);
+          j--;
+        }
+        player.life -= 1;
+      }
+    }
+  }
+
+  function gameOver() {
+    if (player.life === 0) {
+      return true;
+    }
+    return false;
+  }
+
+  function restartGame() {
+    ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+    player.life = 5;
+    player.list = [];
+    enemyTruck.list = [];
+    projectileHandler.list = [];
+    chickenMob.list = [];
+  }
+  
+  function gameStatus() {
+    if (gameOver()) {
+      ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+      ctx.fillStyle = 'red';
+      ctx.font = '60px Arial';
+      ctx.fillText('GAME OVER', 100, 200);
+      // let restartButton = document.getElementById('restart');
+      // restartButton.addEventListener('click', (e) => {
+      //   restartGame();
+      // });
+    }
+  }
+
   function animate() {
     requestAnimationFrame(animate);
     now = Date.now();
     elapsed = now - then;
-    if (elapsed > fpsInterval) {
+    if (elapsed > fpsInterval && !gameOver()) {
       then = now - (elapsed % fpsInterval);
       ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
       ctx.drawImage(background, 0, 0, canvasEl.width, canvasEl.height);
@@ -104,13 +151,13 @@ document.addEventListener('DOMContentLoaded', function () {
       );
       checkCollision(chickenMob, enemyTruck);
       checkCollision(projectileHandler, enemyTruck);
-      // chickenCollision(enemyTruck);
-      // projectileCollision(enemyTruck);
+      playerCollision(enemyTruck);
       projectileHandler.updateProjectiles(ctx);
       enemyTruck.update(ctx);
       chickenMob.update(ctx);
       player.movePlayer();
       player.playerWalkAnimation();
+      gameStatus();
       requestAnimationFrame(animate);
     }
   }
