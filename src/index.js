@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function playerCollision(enemy) {
     const enemyArr = enemy.list;
     for (let j = 0; j < enemyArr.length; j++) {
-      if (isCollide(player, enemyArr[j]) && !gameOver()) {
+      if (isCollide(player, enemyArr[j]) && !isgameOver()) {
         enemyArr[j].life -= 1;
         if (enemyArr[j].life <= 0) {
           enemyArr.splice(j, 1);
@@ -101,11 +101,32 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  function gameOver() {
-    if (player.life === 0) {
-      return true;
+  let score = 0;
+  function updateScore() {
+    let chicken = chickenMob.list
+    for (let i = 0; i < chicken.length; i++) {
+      if (chicken[i].y <= 40) {
+        chicken.splice(i, 1)
+        score += 1;
+        i--;
+      }
     }
-    return false;
+  }
+
+  function drawScore() {
+    ctx.fillStyle = "blue"
+    ctx.font = "25px Arial"
+    ctx.fillText('Score: ' + score, 200, 40);
+    updateScore();
+  }
+
+  let gameOver = false;
+
+  function isgameOver() {
+    if (player.life === 0) {
+      return gameOver = true;
+    }
+    return gameOver = false;
   }
 
   function restartGame() {
@@ -115,18 +136,20 @@ document.addEventListener('DOMContentLoaded', function () {
     enemyTruck.list = [];
     projectileHandler.list = [];
     chickenMob.list = [];
+    score = 0;
+    gameOver = false;
   }
   
   function gameStatus() {
-    if (gameOver()) {
+    if (isgameOver()) {
       ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
       ctx.fillStyle = 'red';
       ctx.font = '60px Arial';
       ctx.fillText('GAME OVER', 100, 200);
-      // let restartButton = document.getElementById('restart');
-      // restartButton.addEventListener('click', (e) => {
-      //   restartGame();
-      // });
+      let restartButton = document.getElementById('restart');
+      restartButton.addEventListener('click', (e) => {
+        restartGame();
+      });
     }
   }
 
@@ -134,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
     requestAnimationFrame(animate);
     now = Date.now();
     elapsed = now - then;
-    if (elapsed > fpsInterval && !gameOver()) {
+    if (elapsed > fpsInterval && !isgameOver()) {
       then = now - (elapsed % fpsInterval);
       ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
       ctx.drawImage(background, 0, 0, canvasEl.width, canvasEl.height);
@@ -152,6 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
       checkCollision(chickenMob, enemyTruck);
       checkCollision(projectileHandler, enemyTruck);
       playerCollision(enemyTruck);
+      drawScore();
       projectileHandler.updateProjectiles(ctx);
       enemyTruck.update(ctx);
       chickenMob.update(ctx);
