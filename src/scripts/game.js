@@ -5,6 +5,7 @@ import Enemy from './enemy';
 import EnemyHandler from './enemyHandler';
 import Chicken from './chicken';
 import ChickenHandler from './chickenHandler';
+import EnemyWithAnimation from './enemyWithAnimation';
 
 export default class Game {
   constructor(ctx, canvas) {
@@ -22,6 +23,8 @@ export default class Game {
     this.gameOver = false;
     this.life = new Image();
     this.life.src = './imgs/egg.png';
+    this.restartStatus = false;
+    this.frame = 0;
   }
 
   startAtt() {
@@ -37,14 +40,14 @@ export default class Game {
 
   spawnEnemy() {
     setInterval(() => {
-      this.enemyHandler.list.push(new Enemy(this.canvas, 90, 67, './imgs/truck.png', 1));
-    }, 3000);
+      this.enemyHandler.list.push(new Enemy(this.canvas, 90, 67, './imgs/truck.png', 1, 3));
+    }, 2500);
   }
 
   spawnChicken() {
     setInterval(() => {
       this.chickenMob.list.push(new Chicken(this.height));
-    }, 2500);
+    }, 2700);
   }
 
   isCollide(first, second) {
@@ -116,8 +119,19 @@ export default class Game {
   drawScore() {
     this.ctx.fillStyle = 'blue';
     this.ctx.font = '25px Arial';
-    this.ctx.fillText('Score: ' + this.score, 200, 40);
+    this.ctx.fillText('Score: ' + this.score, this.width - 150, 30);
     this.updateScore();
+  }
+
+  increaseDifficulty() {
+    setInterval(() => {
+      this.drawScore();
+      if (this.score > 1) {
+        setTimeout(() => {
+          this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 90, 90, './imgs/wolf.png', 2, 3, 4));
+        }, 2000);
+      }
+    }, 2000);
   }
 
   isgameOver() {
@@ -129,10 +143,11 @@ export default class Game {
 
   updateLife() {
     if (!this.gameOver) {
-      let eggPos = this.width - 150;
+      let eggPos = 0;
+      // let eggPos = this.width - 150; for top right corner
       for (let i = 0; i < this.player.life; i++) {
         this.ctx.drawImage(this.life, eggPos, 5, 25, 25);
-        eggPos += 30
+        eggPos += 30;
       }
     }
   }
@@ -146,6 +161,23 @@ export default class Game {
     this.chickenMob.list = [];
     this.score = 0;
     this.gameOver = false;
+    this.restartStatus = true;
+  }
+
+  startGame(ctx) {
+    this.checkCollision(this.chickenMob, this.enemyHandler);
+    this.checkCollision(this.projectileHandler, this.enemyHandler);
+    this.playerCollision(this.enemyHandler);
+    this.drawScore();
+    this.updateScore();
+    this.updateLife();
+    // this.enemyHandler.enemyWalkAnimation();
+    this.projectileHandler.updateProjectiles(ctx);
+    this.enemyHandler.update(ctx);
+    this.chickenMob.update(ctx);
+    this.player.movePlayer();
+    this.player.playerWalkAnimation();
+    this.gameStatus();
   }
 
   gameStatus() {

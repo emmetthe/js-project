@@ -23,4 +23,5 @@ export default class ChickenHandler {
       chicken.y -= chicken.speed;
     });
   }
+
 }

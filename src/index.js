@@ -33,23 +33,13 @@ document.addEventListener('DOMContentLoaded', function () {
         game.player.width,
         game.player.height
       );
-      game.checkCollision(game.chickenMob, game.enemyHandler);
-      game.checkCollision(game.projectileHandler, game.enemyHandler);
-      game.playerCollision(game.enemyHandler);
-      game.drawScore();
-      game.updateScore();
-      game.updateLife();
-      game.projectileHandler.updateProjectiles(ctx);
-      game.enemyHandler.update(ctx);
-      game.chickenMob.update(ctx);
-      game.player.movePlayer();
-      game.player.playerWalkAnimation();
-      game.gameStatus();
+      game.startGame(ctx);
       requestAnimationFrame(animate);
     }
   }
-  game.spawnChicken(ctx);
+  game.increaseDifficulty();
   game.spawnEnemy(ctx);
+  game.spawnChicken(ctx);
   startAnimation(20);
 
   window.addEventListener('keydown', (e) => {
@@ -65,8 +55,4 @@ document.addEventListener('DOMContentLoaded', function () {
     game.player.deleteAttack();
   });
 
-  // window.addEventListener('resize', function () {
-  //   canvas.width = 1000;
-  //   canvas.height = 600;
-  // });
 });

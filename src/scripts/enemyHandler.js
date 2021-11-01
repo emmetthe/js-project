@@ -1,4 +1,4 @@
-export default class Enemy {
+export default class EnemyHandler {
   constructor() {
     this.list = [];
   }
@@ -23,4 +23,5 @@ export default class Enemy {
       enemy.x -= enemy.speed;
     });
   }
+
 }

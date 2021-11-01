@@ -8,7 +8,7 @@ export default class Chicken {
     this.frameX = 0;
     this.frameY = 0;
     this.chickenImg = new Image();
-    this.chickenImg.src = "./imgs/vonbon.png";
+    this.chickenImg.src = "./imgs/chicken.png";
     this.life = 1;
   }
 
