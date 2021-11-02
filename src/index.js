@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         game.spawnChicken();
         game.spawnEnemy();
         game.startGame(ctx);
+        game.startAtt();
         game.increaseDifficulty();
         // game.gameStatus();
         requestAnimationFrame(animate);
@@ -69,9 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // console.log(e.code);
     game.player.addAttack();
     game.player.addMove(e.code);
-    if (e.code === 'Space') {
-      game.startAtt();
-    }
   });
   window.addEventListener('keyup', (e) => {
     game.player.deleteMove(e.code);

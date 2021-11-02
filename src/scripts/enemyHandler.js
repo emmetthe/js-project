@@ -1,6 +1,7 @@
 export default class EnemyHandler {
   constructor() {
     this.list = [];
+    this.enemyFrame = 0;
   }
 
   draw(ctx, enemy) {
@@ -25,7 +26,7 @@ export default class EnemyHandler {
   update(ctx) {
     this.list.forEach((enemy) => {
       enemy.x -= enemy.speed;
-      if (enemy.frameX < enemy.maxFrameX) {
+      if (enemy.frameX < enemy.maxFrameX && this.enemyFrame % 5 === 0) {
         // number decided by col
         enemy.frameX++;
       } else {

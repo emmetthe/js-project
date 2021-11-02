@@ -7,15 +7,22 @@
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js"></script>
     <title>Project Name</title>
+    <!-- <link rel="shortcut icon" type="image/jpg" href="./imgs/favicon.png"/> -->
   </head>
 
   <body>
     <audio id="default_audio" src="src/music/Caketown.mp3"></audio>
+    <div class="audio">
+      <button class="audio" id="play_audio"></button>
+      <button class="audio" id="pause_audio"></button>
+    </div>
+    <div class="scoreboard">
+      <div class="label">Score</div>
+      <div class="value" id="score">0</div>
+    </div>
     <div id="game-container">
       <canvas id="canvas" width="1000" height="700"></canvas>
       <button id="restart" style="display: none">Restart</button>
     </div>
-    <button class="audio" id="play_audio"></button>
-    <button class="audio" id="pause_audio"></button>
   </body>
 </html>

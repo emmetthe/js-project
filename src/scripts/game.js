@@ -13,13 +13,12 @@ export default class Game {
     this.height = canvas.height;
     this.ctx = ctx;
     this.canvas = canvas;
-    this.player = new Player(canvas, 64.6667, 97, 0, 1, 8, false, false, './imgs/player.png');
+    this.player = new Player(canvas, 65, 100, 0, 1, 8, false, false, './imgs/player.png');
     this.background = new Image();
     this.background.src = './imgs/background.jpg';
     this.projectileHandler = new ProjectileHandler();
     this.enemyHandler = new EnemyHandler();
     this.chickenMob = new ChickenHandler();
-    // this.enemyWolf = new EnemyWithAnimation(this.canvas, 76, 60, './imgs/wolf.png', 2, 3, 1)
     this.score = 0;
     this.gameOver = false;
     this.life = new Image();
@@ -34,9 +33,9 @@ export default class Game {
   startAtt() {
     if (this.player.keys['Space']) {
       this.player.attacking = true;
-      if (this.player.isFacingLeft()) {
+      if (this.player.isFacingLeft()&& this.currentFrame % 3 === 0) {
         this.projectileHandler.list.push(new Projectile(this.player.x - 12, this.player.y + 50, './imgs/featherL.png', 'left'));
-      } else if (this.player.isFacingRight()) {
+      } else if (this.player.isFacingRight() && this.currentFrame % 2 === 0) {
         this.projectileHandler.list.push(new Projectile(this.player.x + 45, this.player.y + 50, './imgs/featherR.png', 'right'));
       }
     }
@@ -88,10 +87,10 @@ export default class Game {
         if (enemyArr[j] && objectArr[i] && this.isCollide(objectArr[i], enemyArr[j])) {
           enemyArr[j].life -= 1;
           objectArr.splice(i, 1);
-          if (objectArr === this.chickenMob.list) {
+          if (objectArr[i] === this.chickenMob.list[i]) {
             this.player.life -= 1;
           }
-          if (enemyArr[j].life <= 0) {
+          if (enemyArr[j].life <= 0 || enemyArr[j].x < 10) {
             enemyArr.splice(j, 1);
             j--;
           }
@@ -117,35 +116,42 @@ export default class Game {
 
   updateScore() {
     let chicken = this.chickenMob.list;
+    let score = document.getElementById('score')
     for (let i = 0; i < chicken.length; i++) {
       if (chicken[i].y <= this.height + 40 - this.height) {
         chicken.splice(i, 1);
         this.score += 1;
+        score.innerText = this.score;
         i--;
       }
     }
   }
 
-  drawScore() {
-    this.ctx.fillStyle = 'blue';
-    this.ctx.font = '25px Arial';
-    this.ctx.fillText('Score: ' + this.score, this.width - 150, 30);
-    this.updateScore();
-  }
+  // drawScore() {
+    // this.ctx.fillStyle = 'blue';
+    // this.ctx.font = '25px Arial';
+    // this.ctx.fillText('Score: ' + this.score, this.width - 150, 30);
+  //   this.updateScore();
+  // }
 
   increaseDifficulty() {
     if (this.currentFrame % this.level1DifficultyFrame === 0 && this.score > 5) {
+      // && this.score > 5
       this.enemyTruckPerFrame = 50;
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 53.83, 70, './imgs/mummy.png', 2, 3, 4, 2));
     }
     if (this.currentFrame % 25 === 0 && this.score > 15) {
+      // && this.score > 15
       this.enemyTruckPerFrame = 25;
-      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 30, './imgs/jrnecki.png', 2, 2, 6, 1));
+      this.enemyHandler.list.forEach((enemy) => enemy.speed += 2);
+      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 2, 6, 1));
     }
-    if(this.currentFrame % 10 === 0 && this.score > 25 && this.score % 5 === 0) {
+    if (this.currentFrame % 10 === 0 && this.score > 25 && this.score % 5 === 0) {
+      //  && this.score > 25 && this.score % 5 === 0
       this.enemyTruckPerFrame -= 5;
-      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 30, './imgs/jrnecki.png', 2, 2, 8, 1));
+      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 2, 8, 2));
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 53.83, 70, './imgs/mummy.png', 2, 3, 6, 2));
+      this.enemyHandler.list.forEach((enemy) => enemy.life += 1);
     }
   }
 
@@ -158,7 +164,10 @@ export default class Game {
 
   updateLife() {
     if (!this.gameOver) {
-      let eggPos = 0;
+      this.ctx.fillStyle = 'black';
+      this.ctx.font = '20px Comic Sans MS, cursive, TSCu_Comic, sans-serif';
+      this.ctx.fillText('Lives Left: ', this.width - this.width, 25);
+      let eggPos = 110;
       // let eggPos = this.width - 150; for top right corner
       for (let i = 0; i < this.player.life; i++) {
         this.ctx.drawImage(this.life, eggPos, 5, 25, 25);
@@ -168,6 +177,8 @@ export default class Game {
   }
 
   restartGame() {
+    this.player.x = canvas.width / 2;
+    this.player.y = canvas.height / 2;
     this.player.life = 5;
     this.player.list = [];
     this.enemyHandler.list = [];
@@ -177,6 +188,10 @@ export default class Game {
     this.gameOver = false;
     this.restartStatus = false;
     this.currentFrame = 0;
+    this.enemyHandler.enemyFrame = 0;
+    let score = document.getElementById('score')
+    score.innerText = 0;
+    // this.chickenMob.chickenFrame = 0;
   }
 
   gameStatus() {
@@ -199,11 +214,9 @@ export default class Game {
       this.checkCollision(this.chickenMob, this.enemyHandler);
       this.checkCollision(this.projectileHandler, this.enemyHandler);
       this.playerCollision(this.enemyHandler);
-      this.drawScore();
       this.updateScore();
       this.updateLife();
       this.isgameOver();
-      // this.enemyWolf.enemyWalkAnimation();
       this.projectileHandler.updateProjectiles(ctx);
       this.enemyHandler.update(ctx);
       this.chickenMob.update(ctx);
@@ -211,6 +224,8 @@ export default class Game {
       this.player.playerWalkAnimation();
       this.gameStatus();
       this.currentFrame += 1;
+      this.enemyHandler.enemyFrame += 1;
+      // this.chickenMob.chickenFrame += 1;
     }
   }
 }

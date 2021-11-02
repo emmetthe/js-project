@@ -9,11 +9,38 @@
 }
 
 #canvas {
-  position: absolute;
+  position: relative;
   top: 10%;
   transform: scale(1);
+  border: 1px solid black;
 }
 
 #restart {
   position: absolute;
+  top: 50%;
+}
+
+.audio {
+  border: 1px, solid, black;
+}
+
+#play_audio {
+  background: url("../imgs/playbutton.png");
+  background-color: #ecb7eb;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+#pause_audio {
+  background: url("../imgs/pausebutton.png");
+  background-color: #9997ee;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

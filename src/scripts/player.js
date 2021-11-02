@@ -44,10 +44,18 @@ export default class Player {
       this.frameY = 1;
       this.moving = true;
     }
+    // if(this.keys['Space'] && this.frameY === 0) {
+    //   this.frameY = 2;
+    //   this.attacking = true;
+    // }
+    // if(this.keys['Space'] && this.frameY === 1) {
+    //   this.frameY = 3;
+    //   this.attacking = true;
+    // }
   }
 
   playerWalkAnimation() {
-    if (this.frameX < 5 && this.moving) {
+    if ((this.frameX < 5 && this.moving)) { //|| (this.frameX < 3 && this.attacking)
       this.frameX++;
     } else {
       this.frameX = 0;
