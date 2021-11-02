@@ -1,13 +1,41 @@
-#game-container {
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  background: rgb(198, 243, 243);
+  background-size: cover;
+}
+
+.middle-section {
   display: flex;
   position: relative;
   align-content: center;
   justify-content: center;
+  width: 60%;
+  flex-direction: column;
+}
+
+.header {
+  display: inline-block;
+  text-align: center;
+  font-size: 50px;
+  color: rgb(84, 61, 109);
+  text-decoration: none;
+  // position: absolute;
+  font-family: "Poppins";
+  font-weight: 600;
+}
+
+#game-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 10px;
 }
 
 #canvas {
-  position: relative;
-  top: 10%;
+  top: 15%;
   transform: scale(1);
   border: 1px solid black;
 }
@@ -15,29 +43,95 @@
 #restart {
   position: absolute;
   top: 50%;
+  border-radius: 3px;
+  border: 3px solid rgb(173, 241, 163);
+  font-size: 20px;
+  padding: 7px 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#restart:hover {
+  color: rgb(53, 50, 255);
+  box-shadow: 3px 3px 3px rgb(56, 252, 187), -3px -3px 3px rgb(56, 252, 187), -3px 3px 3px rgb(56, 252, 187), 3px -3px 3px rgb(56, 252, 187);
+}
+
+#start {
+  position: absolute;
+  top: 50%;
+  border-radius: 3px;
+  border: 3px solid rgb(173, 241, 163);
+  font-size: 20px;
+  padding: 7px 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#start:hover {
+  color: rgb(53, 50, 255);
+  box-shadow: 3px 3px 3px rgb(56, 252, 187), -3px -3px 3px rgb(56, 252, 187), -3px 3px 3px rgb(56, 252, 187), 3px -3px 3px rgb(56, 252, 187);
+}
+
+#end-game-text {
+  position: absolute;
+  color: rgb(177, 0, 59);
+  top: 30%;
+  font-size: 50px;
+}
+
+.right-side {
+  width: 20%;
+  float: right;
+  display: flex;
+  position: relative;
+  align-content: center;
 }
 
 .audio {
-  border: 1px, solid, black;
+  position: relative;
+  right: -60%;
 }
 
 #play_audio {
-  background: url('../imgs/playbutton.png');
-  background-color: rgb(236, 183, 235);
+  background: url('../imgs/play.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border: none;
-  border-radius: 20px;
   width: 30px;
-  height: 30px;
+  height: 29px;
+  margin-right: 10px;
+  padding: 5px;
 }
 
 #pause_audio {
-  background: url('../imgs/pausebutton.png');
-  background-color: rgb(153, 151, 238);
+  background: url('../imgs/pause.png');
   width: 30px;
   height: 30px;
   background-repeat: no-repeat;
   background-size: cover;
+  border: none;
+  padding: 5px;
 }
+
+.scoreboard {
+  position: relative;
+  width: 25px;
+  border: none;
+  font-size: 30px;
+  right: 20%;
+  margin-top: 40px;
+}
+
+.info {
+  width: 20%;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#description {
+  padding-left: 10px;
+  margin-top: 5%;
+  font-size: 20px;
+}
+ 

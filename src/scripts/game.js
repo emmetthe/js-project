@@ -28,12 +28,13 @@ export default class Game {
     this.chickensPerFrame = 50;
     this.enemyTruckPerFrame = 54;
     this.level1DifficultyFrame = 63;
+    this.welcomeStatus = true;
   }
 
   startAtt() {
     if (this.player.keys['Space']) {
       this.player.attacking = true;
-      if (this.player.isFacingLeft()&& this.currentFrame % 3 === 0) {
+      if (this.player.isFacingLeft() && this.currentFrame % 3 === 0) {
         this.projectileHandler.list.push(new Projectile(this.player.x - 12, this.player.y + 50, './imgs/featherL.png', 'left'));
       } else if (this.player.isFacingRight() && this.currentFrame % 2 === 0) {
         this.projectileHandler.list.push(new Projectile(this.player.x + 45, this.player.y + 50, './imgs/featherR.png', 'right'));
@@ -116,7 +117,7 @@ export default class Game {
 
   updateScore() {
     let chicken = this.chickenMob.list;
-    let score = document.getElementById('score')
+    let score = document.getElementById('score');
     for (let i = 0; i < chicken.length; i++) {
       if (chicken[i].y <= this.height + 40 - this.height) {
         chicken.splice(i, 1);
@@ -128,9 +129,9 @@ export default class Game {
   }
 
   // drawScore() {
-    // this.ctx.fillStyle = 'blue';
-    // this.ctx.font = '25px Arial';
-    // this.ctx.fillText('Score: ' + this.score, this.width - 150, 30);
+  // this.ctx.fillStyle = 'blue';
+  // this.ctx.font = '25px Arial';
+  // this.ctx.fillText('Score: ' + this.score, this.width - 150, 30);
   //   this.updateScore();
   // }
 
@@ -143,15 +144,15 @@ export default class Game {
     if (this.currentFrame % 25 === 0 && this.score > 15) {
       // && this.score > 15
       this.enemyTruckPerFrame = 25;
-      this.enemyHandler.list.forEach((enemy) => enemy.speed += 2);
+      this.enemyHandler.list.forEach((enemy) => (enemy.speed += 2));
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 2, 6, 1));
     }
-    if (this.currentFrame % 10 === 0 && this.score > 25 && this.score % 5 === 0) {
+    if (this.currentFrame % 10 === 0 & this.score > 25 && this.score % 5 === 0) {
       //  && this.score > 25 && this.score % 5 === 0
       this.enemyTruckPerFrame -= 5;
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 2, 8, 2));
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 53.83, 70, './imgs/mummy.png', 2, 3, 6, 2));
-      this.enemyHandler.list.forEach((enemy) => enemy.life += 1);
+      this.enemyHandler.list.forEach((enemy) => (enemy.life += 1));
     }
   }
 
@@ -165,10 +166,10 @@ export default class Game {
   updateLife() {
     if (!this.gameOver) {
       this.ctx.fillStyle = 'black';
-      this.ctx.font = '20px Comic Sans MS, cursive, TSCu_Comic, sans-serif';
-      this.ctx.fillText('Lives Left: ', this.width - this.width, 25);
-      let eggPos = 110;
-      // let eggPos = this.width - 150; for top right corner
+      this.ctx.font = '20px arial';
+      this.ctx.fillText('Lives Left: ', this.width - 260, 25);
+      let eggPos = this.width - 150;
+      // let eggPos = 110; for top  left corner
       for (let i = 0; i < this.player.life; i++) {
         this.ctx.drawImage(this.life, eggPos, 5, 25, 25);
         eggPos += 30;
@@ -189,17 +190,20 @@ export default class Game {
     this.restartStatus = false;
     this.currentFrame = 0;
     this.enemyHandler.enemyFrame = 0;
-    let score = document.getElementById('score')
+    let score = document.getElementById('score');
     score.innerText = 0;
     // this.chickenMob.chickenFrame = 0;
+    let gameOver = document.getElementById('end-game-text');
+    gameOver.style.display = 'none';
   }
 
   gameStatus() {
     if (this.isgameOver()) {
       this.ctx.clearRect(0, 0, this.width, this.height);
-      this.ctx.fillStyle = 'red';
-      this.ctx.font = '60px Arial';
-      this.ctx.fillText('GAME OVER', 350, 200);
+      this.ctx.drawImage(this.background, 0, 0, this.width, this.height);
+      let gameOver = document.getElementById('end-game-text');
+      gameOver.style.display = 'block';
+      gameOver.innerText;
       let restartButton = document.getElementById('restart');
       restartButton.style.display = 'block';
       restartButton.addEventListener('click', (e) => {
@@ -225,7 +229,7 @@ export default class Game {
       this.gameStatus();
       this.currentFrame += 1;
       this.enemyHandler.enemyFrame += 1;
-      // this.chickenMob.chickenFrame += 1;
     }
   }
+
 }

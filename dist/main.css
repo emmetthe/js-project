@@ -1,16 +1,43 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
-#game-container {
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  background: #c6f3f3;
+  background-size: cover;
+}
+
+.middle-section {
   display: flex;
   position: relative;
   align-content: center;
   justify-content: center;
+  width: 60%;
+  flex-direction: column;
+}
+
+.header {
+  display: inline-block;
+  text-align: center;
+  font-size: 50px;
+  color: #543d6d;
+  text-decoration: none;
+  font-family: "Poppins";
+  font-weight: 600;
+}
+
+#game-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 10px;
 }
 
 #canvas {
-  position: relative;
-  top: 10%;
+  top: 15%;
   transform: scale(1);
   border: 1px solid black;
 }
@@ -18,29 +45,95 @@
 #restart {
   position: absolute;
   top: 50%;
+  border-radius: 3px;
+  border: 3px solid #adf1a3;
+  font-size: 20px;
+  padding: 7px 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#restart:hover {
+  color: #3532ff;
+  box-shadow: 3px 3px 3px #38fcbb, -3px -3px 3px #38fcbb, -3px 3px 3px #38fcbb, 3px -3px 3px #38fcbb;
+}
+
+#start {
+  position: absolute;
+  top: 50%;
+  border-radius: 3px;
+  border: 3px solid #adf1a3;
+  font-size: 20px;
+  padding: 7px 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#start:hover {
+  color: #3532ff;
+  box-shadow: 3px 3px 3px #38fcbb, -3px -3px 3px #38fcbb, -3px 3px 3px #38fcbb, 3px -3px 3px #38fcbb;
+}
+
+#end-game-text {
+  position: absolute;
+  color: #b1003b;
+  top: 30%;
+  font-size: 50px;
+}
+
+.right-side {
+  width: 20%;
+  float: right;
+  display: flex;
+  position: relative;
+  align-content: center;
 }
 
 .audio {
-  border: 1px, solid, black;
+  position: relative;
+  right: -60%;
 }
 
 #play_audio {
-  background: url("../imgs/playbutton.png");
-  background-color: #ecb7eb;
+  background: url("../imgs/play.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border: none;
-  border-radius: 20px;
   width: 30px;
-  height: 30px;
+  height: 29px;
+  margin-right: 10px;
+  padding: 5px;
 }
 
 #pause_audio {
-  background: url("../imgs/pausebutton.png");
-  background-color: #9997ee;
+  background: url("../imgs/pause.png");
   width: 30px;
   height: 30px;
   background-repeat: no-repeat;
   background-size: cover;
+  border: none;
+  padding: 5px;
+}
+
+.scoreboard {
+  position: relative;
+  width: 25px;
+  border: none;
+  font-size: 30px;
+  right: 20%;
+  margin-top: 40px;
+}
+
+.info {
+  width: 20%;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#description {
+  padding-left: 10px;
+  margin-top: 5%;
+  font-size: 20px;
 }

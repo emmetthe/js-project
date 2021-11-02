@@ -6,23 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js"></script>
-    <title>Project Name</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Free Range</title>
     <!-- <link rel="shortcut icon" type="image/jpg" href="./imgs/favicon.png"/> -->
   </head>
 
   <body>
     <audio id="default_audio" src="src/music/Caketown.mp3"></audio>
-    <div class="audio">
-      <button class="audio" id="play_audio"></button>
-      <button class="audio" id="pause_audio"></button>
+    <div class="right-side">
+      <div class="audio">
+        <button id="play_audio"></button>
+        <button id="pause_audio"></button>
+      </div>
+      <div class="scoreboard">
+        <div class="label">Score</div>
+        <div class="value" id="score">0</div>
+      </div>
     </div>
-    <div class="scoreboard">
-      <div class="label">Score</div>
-      <div class="value" id="score">0</div>
+    <div class="info">
+      <div id="description">
+        Your goal is to help the chickens safely cross the road! Use the arrow keys to move around and spacebar to shoot down incoming
+        enemies and objects. Be careful not to touch anything or you'll get hurt!
+      </div>
+      <div id="links"></div>
     </div>
-    <div id="game-container">
-      <canvas id="canvas" width="1000" height="700"></canvas>
-      <button id="restart" style="display: none">Restart</button>
+    <div class="middle-section">
+      <header class="header">Free Range</header>
+      <div id="game-container">
+        <canvas id="canvas" width="1000" height="700"></canvas>
+        <button id="restart" style="display: none">Restart</button>
+        <button id="start" style="display: block">Start Game</button>
+        <div id="end-game-text" style="display: none">GAME OVER</div>
+      </div>
     </div>
   </body>
 </html>
