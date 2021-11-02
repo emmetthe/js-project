@@ -79,7 +79,7 @@ export default class Game {
     for (let i = 0; i < objectArr.length; i++) {
       if (
         objectArr === this.projectileHandler.list &&
-        (objectArr[i].x >= this.width - 30 || objectArr[i].x <= this.width + 5 - this.width)
+        (objectArr[i].x >= this.width - 45 || objectArr[i].x <= this.width + 5 - this.width)
       ) {
         objectArr.splice(i, 1);
         i--;
