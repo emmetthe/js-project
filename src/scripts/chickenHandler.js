@@ -19,9 +19,14 @@ export default class ChickenHandler {
 
   update(ctx) {
     this.list.forEach((chicken) => {
-      this.draw(ctx, chicken);
       chicken.y -= chicken.speed;
+      if (chicken.frameX < 5) {
+        // number decided by col
+        chicken.frameX++;
+      } else {
+        chicken.frameX = 0;
+      }
+      this.draw(ctx, chicken);
     });
   }
-
 }

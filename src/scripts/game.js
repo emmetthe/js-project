@@ -13,7 +13,7 @@ export default class Game {
     this.height = canvas.height;
     this.ctx = ctx;
     this.canvas = canvas;
-    this.player = new Player(canvas, 65, 100, 0, 0, 8, false, false, './imgs/player.png');
+    this.player = new Player(canvas, 64.6667, 97, 0, 1, 8, false, false, './imgs/player.png');
     this.background = new Image();
     this.background.src = './imgs/background.jpg';
     this.projectileHandler = new ProjectileHandler();
@@ -134,13 +134,18 @@ export default class Game {
   }
 
   increaseDifficulty() {
-    if (this.currentFrame % this.level1DifficultyFrame === 0 && this.score > 1) {
-      this.enemyTruckPerFrame = 50; 
-      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 93, 60, './imgs/wolf.png', 2, 3, 5, 2));
+    if (this.currentFrame % this.level1DifficultyFrame === 0 && this.score > 5) {
+      this.enemyTruckPerFrame = 50;
+      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 53.83, 70, './imgs/mummy.png', 2, 3, 4, 2));
     }
-    if(this.currentFrame % 25 === 0 && this.score > 1) {
+    if (this.currentFrame % 25 === 0 && this.score > 15) {
       this.enemyTruckPerFrame = 25;
-      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 32, 30, './imgs/jrnecki.png', 2, 2, 6, 1));
+      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 30, './imgs/jrnecki.png', 2, 2, 6, 1));
+    }
+    if(this.currentFrame % 10 === 0 && this.score > 25 && this.score % 5 === 0) {
+      this.enemyTruckPerFrame -= 5;
+      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 30, './imgs/jrnecki.png', 2, 2, 8, 1));
+      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 53.83, 70, './imgs/mummy.png', 2, 3, 6, 2));
     }
   }
 

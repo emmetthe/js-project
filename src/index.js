@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
   pauseButton.addEventListener('click', (e) => {
-    if(audioPlaying) {
+    if (audioPlaying) {
       audio.pause();
       audioPlaying = false;
     }
-  })
+  });
 
   let fps, fpsInterval, startTime, now, then, elapsed;
   function startAnimation(fps) {

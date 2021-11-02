@@ -24,9 +24,14 @@ export default class EnemyHandler {
 
   update(ctx) {
     this.list.forEach((enemy) => {
-      this.draw(ctx, enemy);
       enemy.x -= enemy.speed;
+      if (enemy.frameX < enemy.maxFrameX) {
+        // number decided by col
+        enemy.frameX++;
+      } else {
+        enemy.frameX = 0;
+      }
+      this.draw(ctx, enemy);
     });
   }
-
 }
