@@ -34,7 +34,7 @@ export default class Game {
   startAtt() {
     if (this.player.keys['Space']) {
       this.player.attacking = true;
-      if (this.player.isFacingLeft() && this.currentFrame % 3 === 0) {
+      if (this.player.isFacingLeft() && this.currentFrame % 7 === 0) {
         this.projectileHandler.list.push(new Projectile(this.player.x - 12, this.player.y + 50, './imgs/featherL.png', 'left'));
       } else if (this.player.isFacingRight() && this.currentFrame % 2 === 0) {
         this.projectileHandler.list.push(new Projectile(this.player.x + 45, this.player.y + 50, './imgs/featherR.png', 'right'));
@@ -141,16 +141,16 @@ export default class Game {
       this.enemyTruckPerFrame = 50;
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 53.83, 70, './imgs/mummy.png', 2, 3, 4, 2));
     }
-    if (this.currentFrame % 25 === 0 && this.score > 15) {
+    if (this.currentFrame % 25 === 0 && this.score > 10) {
       // && this.score > 15
       this.enemyTruckPerFrame = 25;
       this.enemyHandler.list.forEach((enemy) => (enemy.speed += 2));
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 2, 6, 1));
     }
-    if (this.currentFrame % 10 === 0 & this.score > 25 && this.score % 5 === 0) {
+    if (this.currentFrame % 10 === 0 & this.score > 23 && this.score % 5 === 0) {
       //  && this.score > 25 && this.score % 5 === 0
       this.enemyTruckPerFrame -= 5;
-      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 2, 8, 2));
+      // this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 2, 7, 2));
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 53.83, 70, './imgs/mummy.png', 2, 3, 6, 2));
       this.enemyHandler.list.forEach((enemy) => (enemy.life += 1));
     }

@@ -7,6 +7,7 @@ body {
   overflow-x: hidden;
   background: #c6f3f3;
   background-size: cover;
+  margin: 0;
 }
 
 .middle-section {
@@ -16,16 +17,21 @@ body {
   justify-content: center;
   width: 60%;
   flex-direction: column;
+  height: 100%;
 }
 
 .header {
+  position: absolute;
   display: inline-block;
   text-align: center;
-  font-size: 50px;
+  font-size: 55px;
   color: #543d6d;
   text-decoration: none;
+  top: 30px;
+  left: 426.76px;
   font-family: "Poppins";
   font-weight: 600;
+  text-shadow: 2px 2px 2px #ac8cce;
 }
 
 #game-container {
@@ -77,10 +83,12 @@ body {
   color: #b1003b;
   top: 30%;
   font-size: 50px;
+  font-weight: 600;
 }
 
 .right-side {
   width: 20%;
+  height: 100%;
   float: right;
   display: flex;
   position: relative;
@@ -101,7 +109,13 @@ body {
   width: 30px;
   height: 29px;
   margin-right: 10px;
-  padding: 5px;
+  margin-top: 15px;
+  padding: 10px 5px;
+}
+
+#play_audio:hover {
+  color: #3532ff;
+  filter: drop-shadow(3px 3px 2px #4444dd);
 }
 
 #pause_audio {
@@ -111,16 +125,38 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   border: none;
-  padding: 5px;
+  padding: 10px 5px;
+}
+
+#pause_audio:hover {
+  color: #3532ff;
+  filter: drop-shadow(3px 3px 2px #4444dd);
 }
 
 .scoreboard {
-  position: relative;
-  width: 25px;
-  border: none;
+  position: absolute;
+  left: 0;
+  top: 100px;
+  width: 125px;
+  height: 120px;
+  border: 1px solid black;
   font-size: 30px;
   right: 20%;
   margin-top: 40px;
+  padding: 5px;
+  text-align: center;
+  box-shadow: 3px 3px 3px #539fb1, -3px -3px 3px #539fb1, -3px 3px 3px #539fb1, 3px -3px 3px #539fb1;
+}
+
+.label {
+  padding: 10px;
+  border-bottom: 2px solid black;
+  text-shadow: 2px 2px 2px #9da4a5;
+}
+
+.value {
+  padding: 15px 10px;
+  text-shadow: 2px 2px 2px #9da4a5;
 }
 
 .info {
@@ -129,11 +165,58 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  height: 100%;
+  position: relative;
+}
+
+#description-box {
+  border: 2px solid black;
+  padding: 5px 10px;
+  margin-left: 10px;
+  font-size: 23px;
+  line-height: 1.6;
+  position: absolute;
+  top: 125px;
+  left: 10%;
+  height: 400px;
+  box-shadow: 4px 4px 4px #2b8296;
 }
 
 #description {
-  padding-left: 10px;
-  margin-top: 5%;
+  padding: 5px;
+  text-align: center;
+  margin-top: 20px;
+  text-shadow: 2px 2px 2px #81d5e0;
+}
+
+#linkTag {
+  position: absolute;
   font-size: 20px;
+  font-weight: 600;
+  bottom: 20px;
+  right: 50%;
+  margin: 0;
+}
+
+#links img {
+  width: 35px;
+  padding: 5px;
+  bottom: 0;
+  position: absolute;
+}
+
+#links img:hover {
+  opacity: 0.6;
+}
+
+#linkedin {
+  position: absolute;
+  bottom: 8px;
+  right: 37%;
+}
+
+#github {
+  bottom: 10px;
+  position: absolute;
+  right: 50%;
 }

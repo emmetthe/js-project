@@ -6,14 +6,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const game = new Game(ctx, canvas);
 
-  const playButton = document.querySelector('#play_audio');
-  const pauseButton = document.querySelector('#pause_audio');
+  const playButton = document.getElementById('play_audio');
+  const pauseButton = document.getElementById('pause_audio');
   let audio = document.getElementById('default_audio');
   audio.loop = true;
   let audioPlaying = false;
   playButton.addEventListener('click', (e) => {
     if (!audioPlaying) {
-      audio.volume = 0.2;
+      audio.volume = 0.1;
       audio.play();
       audioPlaying = true;
     }
