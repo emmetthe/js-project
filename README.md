@@ -23,7 +23,7 @@ In addition, this project will include:
 - Description will include the background of the game as well as instructions about to how start and play the game
 - On the top right corner contains a music button which is disabled by default, but clicking on it will enable the music
 - To the right of the game displays the score from the player's current session
-- The top right corner inside the gamedisplays the number of lives the player has left
+- The top right corner inside the game displays the number of lives the player has left
 
 ## Technologies, Libraries, APIs
  - Canvas API
