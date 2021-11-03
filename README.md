@@ -18,12 +18,12 @@ In addition, this project will include:
 - A background of the game along with various features
 
 ## Wireframes
-![wireframe](https://i.gyazo.com/d29949cbc7406fa58dc56ca413c99bb7.png)
+![wireframe](https://i.gyazo.com/220ec33f81d6085dc579771d9d41aac5.png)
 - On the bottom left contains links. Links will contain my contact information such as my Github Repo and LinkedIn
-- Controls will include instructions about to how start and play the game, as well as how to pause or restart
-- On the right contains a music button which is disabled by default, but clicking on it will enable the music
-- The top right corner displays the score from the player's current session
-- The top left corner displays the number of lives the player has left
+- Description will include the background of the game as well as instructions about to how start and play the game
+- On the top right corner contains a music button which is disabled by default, but clicking on it will enable the music
+- To the right of the game displays the score from the player's current session
+- The top right corner inside the gamedisplays the number of lives the player has left
 
 ## Technologies, Libraries, APIs
  - Canvas API
