@@ -144,7 +144,7 @@ export default class Game {
     if (this.currentFrame % 25 === 0 && this.score > 10) {
       // && this.score > 15
       this.enemyTruckPerFrame = 25;
-      this.enemyHandler.list.forEach((enemy) => (enemy.speed += 2));
+      this.enemyHandler.list.forEach((enemy) => (enemy.speed += 1));
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 2, 6, 1));
     }
     if (this.currentFrame % 10 === 0 & this.score > 23 && this.score % 5 === 0) {
