@@ -151,11 +151,11 @@ body {
 .highscoreBoard {
   position: absolute;
   padding: 10px;
-  height: 65px;
+  height: 50px;
   border: 1px solid black;
   font-size: 28px;
   left: 0;
-  width: 200px;
+  width: 215px;
   top: 125px;
   box-shadow: 3px 3px 3px #539fb1, -3px -3px 3px #539fb1, -3px 3px 3px #539fb1, 3px -3px 3px #539fb1;
 }
