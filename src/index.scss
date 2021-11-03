@@ -42,7 +42,8 @@ body {
 #canvas {
   top: 15%;
   transform: scale(1);
-  border: 1px solid black;
+  border: 1px solid rgb(123, 255, 233);
+  box-shadow: 3px 3px 3px rgb(182, 248, 226), -3px -3px 3px rgb(182, 248, 226), -3px 3px 3px rgb(182, 248, 226), 3px -3px 3px rgb(182, 248, 226);
 }
 
 #restart {

@@ -45,7 +45,8 @@ body {
 #canvas {
   top: 15%;
   transform: scale(1);
-  border: 1px solid black;
+  border: 1px solid #7bffe9;
+  box-shadow: 3px 3px 3px #b6f8e2, -3px -3px 3px #b6f8e2, -3px 3px 3px #b6f8e2, 3px -3px 3px #b6f8e2;
 }
 
 #restart {
