@@ -148,11 +148,11 @@ export default class Game {
       this.enemyHandler.list.forEach((enemy) => (enemy.speed += 1));
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 34, 31, './imgs/jrnecki.png', 2, 1, 4));
     }
-    if ((this.currentFrame % 13 === 0) & (this.score > 23) && this.score % 7 === 0) {
+    if ((this.currentFrame % 43 === 0) & (this.score > 23) && this.score % 5 === 0) {
       this.enemyTruckPerFrame -= 5;
-      // this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 2, 7));
+      this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 2, 5));
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 53.83, 70, './imgs/mummy.png', 2, 2, 4));
-      this.enemyHandler.list.forEach((enemy) => (enemy.life += 1));
+      this.enemyHandler.list.forEach((enemy) => (enemy.speed += 1));
     }
   }
 
@@ -227,9 +227,13 @@ export default class Game {
       this.player.movePlayer();
       this.player.playerWalkAnimation();
       this.gameStatus();
+      this.checkHighscore();
+      this.spawnChicken();
+      this.spawnEnemy();
+      this.startAtt();
+      this.increaseDifficulty();
       this.currentFrame += 1;
       this.enemyHandler.enemyFrame += 1;
-      this.checkHighscore();
     }
   }
 

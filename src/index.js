@@ -61,11 +61,11 @@ document.addEventListener('DOMContentLoaded', function () {
           game.player.width,
           game.player.height
         );
-        game.spawnChicken();
-        game.spawnEnemy();
+        // game.spawnChicken();
+        // game.spawnEnemy();
         game.startGame(ctx);
-        game.startAtt();
-        game.increaseDifficulty();
+        // game.startAtt();
+        // game.increaseDifficulty();
         // game.gameStatus();
         requestAnimationFrame(animate);
       }
