@@ -8,8 +8,8 @@ This project was made using vanilla Javascript and HTML Canvas. In this game, th
 In this project, users will be able to:
 
 - Play the game with their keyboard
-- Pause/restart the game at any time
-- See their current and highest score
+- Play music
+- See their current score
 - Shoot projectiles and incoming objects
 
 In addition, this project will include:
