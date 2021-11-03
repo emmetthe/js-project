@@ -254,9 +254,9 @@ export default class Game {
       let text = '';
       let bottomText = '';
       text = 'Use the arrow keys to move';
-      bottomText = 'and Spacebar to shoot!';
+      bottomText = 'Hold down spacebar to shoot!';
       this.ctx.fillText(text, this.width / 4, this.height - 500);
-      this.ctx.fillText(bottomText, this.width / 4 + 50, this.height - 400);
+      this.ctx.fillText(bottomText, this.width / 4, this.height - 400);
     }
   }
 }

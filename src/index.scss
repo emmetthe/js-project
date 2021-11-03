@@ -1,3 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
 body {
   height: 100vh;
   width: 100vw;
@@ -9,7 +18,6 @@ body {
 
 .middle-section {
   display: flex;
-  position: relative;
   align-content: center;
   justify-content: center;
   width: 60%;
@@ -18,32 +26,43 @@ body {
 }
 
 .header {
-  position: absolute;
-  display: inline-block;
+  // display: inline-block;
+  // top: 50%;
+  position: relative;
   text-align: center;
   font-size: 55px;
   color: rgb(84, 61, 109);
-  text-decoration: none;
-  top: 30px;
-  left: 426.76px;
   font-family: 'Poppins';
   font-weight: 600;
   text-shadow: 2px 2px 2px rgb(172, 140, 206);
+  overflow: hidden;
+  padding: 0.5vw;
+  margin-top: -2%;
+  top: 0;
 }
 
 #game-container {
   display: flex;
   align-content: center;
   justify-content: center;
+  padding: 1vw;
+  overflow: hidden;
+  margin-top: -1.5%;
   position: relative;
-  margin-top: 10px;
+  height: 78vh;
+  width: 60vw;
+  left: -3%;
 }
 
 #canvas {
-  top: 15%;
+  // top: 15%;
+  max-width: 91.4%;
+  height: auto;
   transform: scale(1);
   border: 1px solid rgb(123, 255, 233);
-  box-shadow: 3px 3px 3px rgb(182, 248, 226), -3px -3px 3px rgb(182, 248, 226), -3px 3px 3px rgb(182, 248, 226), 3px -3px 3px rgb(182, 248, 226);
+  box-shadow: 7px 7px 7px rgb(182, 248, 226), -7px -7px 7px rgb(182, 248, 226), -7px 7px 7px rgb(182, 248, 226),
+    7px -7px 7px rgb(182, 248, 226);
+  overflow: hidden;
 }
 
 #restart {
@@ -68,6 +87,7 @@ body {
   font-size: 20px;
   padding: 7px 12px;
   font-family: Arial, Helvetica, sans-serif;
+  background: lightgray;
 }
 
 #start:hover {
@@ -81,6 +101,8 @@ body {
   top: 30%;
   font-size: 50px;
   font-weight: 600;
+  overflow: hidden;
+  text-align: center;
 }
 
 .right-side {
@@ -95,6 +117,7 @@ body {
 .audio {
   position: relative;
   right: -60%;
+  height: 10vh;
 }
 
 #play_audio {
@@ -127,7 +150,7 @@ body {
 
 #pause_audio:hover {
   color: rgb(53, 50, 255);
-  filter: drop-shadow(3px 3px 2px #4444dd);;
+  filter: drop-shadow(3px 3px 2px #4444dd);
 }
 
 .scoreboard {
@@ -143,24 +166,27 @@ body {
   padding: 5px;
   text-align: center;
   box-shadow: 3px 3px 3px rgb(83, 159, 177), -3px -3px 3px rgb(83, 159, 177), -3px 3px 3px rgb(83, 159, 177), 3px -3px 3px rgb(83, 159, 177);
+  overflow: hidden;
 }
 
 .highscoreBoard {
   position: absolute;
-  padding: 10px;
-  height: 50px;
+  padding: 1rem;
+  height: 4vh;
   border: 1px solid black;
   font-size: 28px;
   left: 0;
-  width: 215px;
+  width: 13vw;
   top: 125px;
+  overflow: hidden;
   box-shadow: 3px 3px 3px rgb(83, 159, 177), -3px -3px 3px rgb(83, 159, 177), -3px 3px 3px rgb(83, 159, 177), 3px -3px 3px rgb(83, 159, 177);
 }
 
 .highscore {
-  position: absolute;
+  text-align: center;
   padding: 5px;
   text-shadow: 2px 2px 2px rgb(157, 164, 165);
+  overflow: hidden;
 }
 
 .label {
@@ -180,58 +206,47 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // justify-content: space-between;
-  height: 100%;
-  position: relative;
+  justify-content: space-between;
+  height: 100vh;
 }
 
-#description-box{
+#description-box {
   border: 2px solid black;
-  padding: 5px 10px;
-  margin-left: 10px;
+  padding: 1vw;
   font-size: 23px;
   line-height: 1.6;
-  position: absolute;
-  top: 125px;
-  left: 10%;
-  height: 400px;
-  box-shadow: 4px 4px 4px rgb(43, 130, 150)
+  left: 1%;
+  // height: 45vh;
+  box-shadow: 4px 4px 4px rgb(43, 130, 150);
+  overflow: hidden;
+  margin-top: 15vh;
+  margin-left: 1vw;
+  margin-right: 0.5vw;
 }
 
 #description {
-  padding: 5px;
-  text-align: center;
-  margin-top: 20px;
+  padding: 5%;
   text-shadow: 2px 2px 2px rgb(129, 213, 224);
 }
 
-#linkTag {
-  position: absolute;
-  font-size: 20px;
-  font-weight: 600;
-  bottom: 20px;
-  right: 50%;
-  margin: 0;
+#links {
+  height: 7vh;
 }
 
+// #linkTag {
+//   font-size: 20px;
+//   font-weight: 600;
+//   width: 3vw;
+//   padding: 2%;
+//   float: left;
+//   top: 10%;
+// }
+
 #links img {
-  width: 35px;
-  padding: 5px;
-  bottom: 0;
-  position: absolute;
+  width: 2vw;
+  padding: 0.5em;
 }
 
 #links img:hover {
   opacity: 0.6;
-}
-
-#linkedin {
-  position: absolute;
-  bottom: 8px;
-  right: 37%;
-}
-#github {
-  bottom: 10px;
-  position: absolute;
-  right: 50%;
 }
