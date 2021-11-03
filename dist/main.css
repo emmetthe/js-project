@@ -229,6 +229,7 @@ body {
 
 #links {
   height: 7vh;
+  display: flex;
 }
 
 #links img {
