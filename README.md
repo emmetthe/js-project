@@ -1,5 +1,5 @@
 # Free Range
-
+[Play now!](https://emmetthe.github.io/js-project/)
 ## Background
 This project was made using vanilla Javascript and HTML Canvas. In this game, the player will use their arrow keys on their keyboard to move around. The goal of this game is to allow the chickens to successfully cross the road. The player will have to prevent incoming objects from hitting the chickens by tapping their spacebar in order to shoot the objects down. The player loses a life whenever a chicken is not able to cross the road or when an object hits the player. The game will end when the player has run out of lives.
 
