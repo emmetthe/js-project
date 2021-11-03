@@ -32,21 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
     animate();
   });
 
-  function welcomeScreen() {
-    if (game.welcomeStatus) {
-      ctx.clearRect(0, 0, game.width, game.height);
-      ctx.drawImage(game.background, 0, 0, game.width, game.height);
-      ctx.font = 'bold 40px Rockwell';
-      ctx.fillStyle = '#2d2b5c';
-      let text = '';
-      let bottomText = '';
-      text = 'Use the arrow keys to move';
-      bottomText = 'and Spacebar to shoot!'
-      ctx.fillText(text, game.width / 4, game.height - 500);
-      ctx.fillText(bottomText, game.width / 4 + 50, game.height - 400);
-    }
-  }
-
   let fps, fpsInterval, startTime, now, then, elapsed;
   function startAnimation(fps) {
     fpsInterval = 1000 / fps;
@@ -60,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
       requestAnimationFrame(animate);
       now = Date.now();
       elapsed = now - then;
-      welcomeScreen();
+      game.welcomeScreen();
       if (elapsed > fpsInterval && !game.isgameOver() && !game.welcomeStatus) {
         then = now - (elapsed % fpsInterval);
         ctx.clearRect(0, 0, game.width, game.height);

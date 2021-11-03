@@ -29,6 +29,9 @@ export default class Game {
     this.enemyTruckPerFrame = 54;
     this.level1DifficultyFrame = 63;
     this.welcomeStatus = true;
+    this.highscoreBoard = document.querySelector('.highscore');
+    this.highscore = localStorage.getItem('game1highscore') || 0;
+    this.highscoreBoard.textContent = 'HIGHSCORE: ' + this.highscore;
   }
 
   startAtt() {
@@ -147,7 +150,7 @@ export default class Game {
       this.enemyHandler.list.forEach((enemy) => (enemy.speed += 1));
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 2, 6, 1));
     }
-    if (this.currentFrame % 10 === 0 & this.score > 23 && this.score % 5 === 0) {
+    if ((this.currentFrame % 10 === 0) & (this.score > 23) && this.score % 5 === 0) {
       //  && this.score > 25 && this.score % 5 === 0
       this.enemyTruckPerFrame -= 5;
       // this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 2, 7, 2));
@@ -229,7 +232,30 @@ export default class Game {
       this.gameStatus();
       this.currentFrame += 1;
       this.enemyHandler.enemyFrame += 1;
+      this.checkHighscore();
     }
   }
 
+  checkHighscore() {
+    if (this.score > localStorage.getItem('game1highscore')) {
+      localStorage.setItem('game1highscore', this.score);
+      this.highscore = this.score;
+      this.highscoreBoard.textContent = 'HIGHSCORE: ' + this.highscore;
+    }
+  }
+
+  welcomeScreen() {
+    if (this.welcomeStatus) {
+      this.ctx.clearRect(0, 0, this.width, this.height);
+      this.ctx.drawImage(this.background, 0, 0, this.width, this.height);
+      this.ctx.font = 'bold 40px Rockwell';
+      this.ctx.fillStyle = '#2d2b5c';
+      let text = '';
+      let bottomText = '';
+      text = 'Use the arrow keys to move';
+      bottomText = 'and Spacebar to shoot!';
+      this.ctx.fillText(text, this.width / 4, this.height - 500);
+      this.ctx.fillText(bottomText, this.width / 4 + 50, this.height - 400);
+    }
+  }
 }
