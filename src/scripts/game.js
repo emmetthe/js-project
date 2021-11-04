@@ -138,12 +138,12 @@ export default class Game {
       this.enemyTruckPerFrame = 50;
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 52, 70, './imgs/mummy.png', 2, 2, 3));
     }
-    if (this.currentFrame % (this.difficultyFrame - 7) === 0 && this.score > 10) {
+    if (this.currentFrame % (this.difficultyFrame - 10) === 0 && this.score > 10) {
       this.enemyTruckPerFrame = 25;
       this.enemyHandler.list.forEach((enemy) => (enemy.speed += 1));
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 34, 31, './imgs/jrnecki.png', 2, 1, 4));
     }
-    if ((this.currentFrame % (this.difficultyFrame - 3) === 0) & (this.score > 23) && this.score % 5 === 0) {
+    if ((this.currentFrame % (this.difficultyFrame - 7) === 0) & (this.score > 23) && this.score % 5 === 0) {
       this.difficultyFrame -= 3;
       this.enemyTruckPerFrame -= 5;
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 1, 5));
