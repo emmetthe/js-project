@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
       now = Date.now();
       elapsed = now - then;
       game.welcomeScreen();
-      if (elapsed > fpsInterval && !game.isgameOver() && !game.welcomeStatus) {
+      if (elapsed > fpsInterval && !game.isgameOver() && !game.welcomeStatus && !game.pauseGameStatus) {
         then = now - (elapsed % fpsInterval);
         ctx.clearRect(0, 0, game.width, game.height);
         ctx.drawImage(game.background, 0, 0, game.width, game.height);
@@ -61,12 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
           game.player.width,
           game.player.height
         );
-        // game.spawnChicken();
-        // game.spawnEnemy();
         game.startGame(ctx);
-        // game.startAtt();
-        // game.increaseDifficulty();
-        // game.gameStatus();
         requestAnimationFrame(animate);
       }
     }
@@ -78,7 +73,18 @@ document.addEventListener('DOMContentLoaded', function () {
     // console.log(e.code);
     game.player.addAttack();
     game.player.addMove(e.code);
+    if (e.code === 'Escape' && game.pauseGameStatus && !game.welcomeStatus) {
+      game.pauseGameStatus = false;
+      let restartButton = document.getElementById('restart');
+      restartButton.style.display = 'none';
+      animate();
+    } else if (e.code === 'Escape' && !game.pauseGameStatus && !game.welcomeStatus) {
+      game.pauseGameStatus = true;
+      game.pauseGame();
+      game.gameStatus();
+    }
   });
+
   window.addEventListener('keyup', (e) => {
     game.player.deleteMove(e.code);
     game.player.deleteAttack();

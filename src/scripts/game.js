@@ -27,11 +27,12 @@ export default class Game {
     this.currentFrame = 0;
     this.chickensPerFrame = 50;
     this.enemyTruckPerFrame = 54;
-    this.level1DifficultyFrame = 63;
+    this.difficultyFrame = 63;
     this.welcomeStatus = true;
     this.highscoreBoard = document.querySelector('.highscore');
     this.highscore = localStorage.getItem('game1highscore') || 0;
     this.highscoreBoard.textContent = 'HIGHSCORE: ' + this.highscore;
+    this.pauseGameStatus = false;
   }
 
   startAtt() {
@@ -49,12 +50,6 @@ export default class Game {
     if (this.currentFrame % this.enemyTruckPerFrame === 0) {
       this.enemyHandler.list.push(new Enemy(this.canvas, 90, 67, './imgs/truck.png', 1, 3));
     }
-    // const enemyInt = setInterval(() => {
-    //   this.enemyHandler.list.push(new Enemy(this.canvas, 90, 67, './imgs/truck.png', 1, 3));
-    //   if (this.player.life === 0) {
-    //     clearInterval(enemyInt);
-    //   }
-    // }, 2500);
   }
 
   spawnChicken() {
@@ -139,16 +134,17 @@ export default class Game {
   // }
 
   increaseDifficulty() {
-    if (this.currentFrame % this.level1DifficultyFrame === 0 && this.score >= 5) {
+    if (this.currentFrame % this.difficultyFrame === 0 && this.score >= 5) {
       this.enemyTruckPerFrame = 50;
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 52, 70, './imgs/mummy.png', 2, 2, 3));
     }
-    if (this.currentFrame % 12 === 0 && this.score > 10) {
+    if (this.currentFrame % (this.difficultyFrame - 7) === 0 && this.score > 10) {
       this.enemyTruckPerFrame = 25;
       this.enemyHandler.list.forEach((enemy) => (enemy.speed += 1));
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 34, 31, './imgs/jrnecki.png', 2, 1, 4));
     }
-    if ((this.currentFrame % 43 === 0) & (this.score > 23) && this.score % 5 === 0) {
+    if ((this.currentFrame % (this.difficultyFrame - 3) === 0) & (this.score > 23) && this.score % 5 === 0) {
+      this.difficultyFrame -= 3;
       this.enemyTruckPerFrame -= 5;
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 39, 32, './imgs/jrnecki.png', 2, 1, 5));
       this.enemyHandler.list.push(new EnemyWithAnimation(this.canvas, 53.83, 70, './imgs/mummy.png', 2, 2, 4));
@@ -192,9 +188,10 @@ export default class Game {
     this.enemyHandler.enemyFrame = 0;
     let score = document.getElementById('score');
     score.innerText = 0;
-    // this.chickenMob.chickenFrame = 0;
     let gameOver = document.getElementById('end-game-text');
     gameOver.style.display = 'none';
+    this.pauseGameStatus = false;
+    this.player.frameY = 1;
   }
 
   gameStatus() {
@@ -258,5 +255,21 @@ export default class Game {
       this.ctx.fillText(text, this.width / 4, this.height - 500);
       this.ctx.fillText(bottomText, this.width / 4, this.height - 400);
     }
+  }
+  pauseGame() {
+    this.ctx.font = 'bold 40px Rockwell';
+    this.ctx.fillStyle = '#e8466c';
+    let text = '';
+    let bottomText = '';
+    text = 'Game paused. Press ESC to resume';
+    bottomText = 'or click the button to start over';
+    this.ctx.fillText(text, this.width / 5, this.height - 500);
+    this.ctx.fillText(bottomText, this.width / 4 - 50, this.height - 400);
+    let restartButton = document.getElementById('restart');
+    restartButton.style.display = 'block';
+    restartButton.addEventListener('click', (e) => {
+      restartButton.style.display = 'none';
+      this.restartGame();
+    });
   }
 }
