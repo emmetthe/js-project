@@ -9,8 +9,9 @@ In this project, users will be able to:
 
 - Play the game with their keyboard
 - Play music
-- See their current score
+- See their current and highest score
 - Shoot projectiles and incoming objects
+- Pause and restart the game at any time
 
 In addition, this project will include:
 
