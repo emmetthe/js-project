@@ -113,7 +113,7 @@ body {
 
 .audio {
   position: relative;
-  right: -60%;
+  right: -55%;
   height: 10vh;
 }
 
@@ -123,22 +123,21 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   border: none;
-  width: 30px;
-  height: 29px;
-  margin-right: 10px;
+  width: 4.5vw;
+  height: 3vh;
   margin-top: 15px;
   padding: 10px 5px;
 }
 
 #play_audio:hover {
   color: rgb(53, 50, 255);
-  filter: drop-shadow(3px 3px 2px #4444dd);
+  filter: drop-shadow(3px 3px 3px #4444dd);
 }
 
 #pause_audio {
-  background: url('../imgs/pause.png');
-  width: 30px;
-  height: 30px;
+  background: url('../imgs/mute.png');
+  width: 1.7vw;
+  height: 3.1vh;
   background-repeat: no-repeat;
   background-size: cover;
   border: none;
@@ -147,7 +146,7 @@ body {
 
 #pause_audio:hover {
   color: rgb(53, 50, 255);
-  filter: drop-shadow(3px 3px 2px #4444dd);
+  filter: drop-shadow(3px 3px 3px #4444dd);
 }
 
 .scoreboard {
@@ -169,9 +168,9 @@ body {
 .highscoreBoard {
   position: absolute;
   padding: 1rem;
-  height: 4vh;
+  height: 3.9vh;
   border: 1px solid black;
-  font-size: 1.7vw;
+  font-size: 1.5vw;
   left: 0;
   width: 13vw;
   top: 13%;
