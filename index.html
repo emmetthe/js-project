@@ -10,31 +10,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="shortcut icon" href="./imgs/favicon.ico">
-    <link rel="icon" type="image/gif" href="./imgs/animated_favicon1.gif">
     <meta name="image" property="og:image" content="https://raw.githubusercontent.com/emmetthe/js-project/main/imgs/splash.png">
     <title>Free Range</title>
-    <!-- <link rel="shortcut icon" type="image/jpg" href="./imgs/favicon.png"/> -->
   </head>
 
   <body>
-    <audio id="default_audio" src="src/music/Caketown.mp3"></audio>
-    <div class="right-side">
-      <div class="audio">
-        <button id="play_audio"></button>
-        <button id="pause_audio"></button>
-      </div>
-      <div class="scoreboard">
-        <div class="label">Score</div>
-        <div class="value" id="score">0</div>
-      </div>
-      <div class="highscoreBoard">
-        <div class="highscore">HIGHSCORE: 0</div>
-      </div>
-    </div>
+    <audio id="default_audio" src="src/music/Caketown.mp3"></audio>    
+
     <div class="info">
       <div id="description-box">
         <div id="description">
-          Help the chickens safely cross the road! <br /><br />Use the arrow keys to move around and spacebar to shoot down
+          Help the chickens safely cross the road! The game gets harder as you help more chickens. <br /><br />Use the arrow keys to move and spacebar to shoot down
           incoming enemies and objects. <br /><br /> Press ESC to pause the game <br> </br>Be careful not to touch anything or you'll get hurt!
         </div>
       </div>
@@ -57,5 +43,25 @@
         <div id="end-game-text" style="display: none">GAME OVER</div>
       </div>
     </div>
+
+    <div class="right-side">
+      <div class="audio">
+        <button id="play_audio"></button>
+        <button id="pause_audio"></button>
+      </div>
+
+      <div class="scores-container">
+        <div class="scoreboard">
+          <div class="label">Score</div>
+          <div class="value" id="score">0</div>
+        </div>
+        <div class="highscoreBoard">
+          <div class="highscore">
+            <div class="highscore-text">HIGHSCORES</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </body>
 </html>

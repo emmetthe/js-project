@@ -45,7 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
       requestAnimationFrame(animate);
       now = Date.now();
       elapsed = now - then;
-      game.welcomeScreen();
+      if(game.welcomeStatus){
+        game.welcomeScreen();
+      }
       if (elapsed > fpsInterval && !game.isgameOver() && !game.welcomeStatus && !game.pauseGameStatus) {
         then = now - (elapsed % fpsInterval);
         ctx.clearRect(0, 0, game.width, game.height);
@@ -67,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  game.createHighscore();
   startAnimation(20);
 
   window.addEventListener('keydown', (e) => {

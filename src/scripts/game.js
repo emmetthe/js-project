@@ -29,9 +29,6 @@ export default class Game {
     this.enemyTruckPerFrame = 54;
     this.difficultyFrame = 63;
     this.welcomeStatus = true;
-    this.highscoreBoard = document.querySelector('.highscore');
-    this.highscore = localStorage.getItem('game1highscore') || 0;
-    this.highscoreBoard.textContent = 'HIGHSCORE: ' + this.highscore;
     this.pauseGameStatus = false;
   }
 
@@ -207,6 +204,10 @@ export default class Game {
         restartButton.style.display = 'none';
         this.restartGame();
       });
+      let top_scores = document.querySelector('.top-scores');
+      top_scores.remove();
+      localStorage.setItem(localStorage.length, this.score);
+      this.createHighscore();
     }
   }
 
@@ -224,7 +225,6 @@ export default class Game {
       this.player.movePlayer();
       this.player.playerWalkAnimation();
       this.gameStatus();
-      this.checkHighscore();
       this.spawnChicken();
       this.spawnEnemy();
       this.startAtt();
@@ -234,12 +234,22 @@ export default class Game {
     }
   }
 
-  checkHighscore() {
-    if (this.score > localStorage.getItem('game1highscore')) {
-      localStorage.setItem('game1highscore', this.score);
-      this.highscore = this.score;
-      this.highscoreBoard.textContent = 'HIGHSCORE: ' + this.highscore;
-    }
+  createHighscore() {
+    let highscores = document.querySelector('.highscore');
+    let top_scores = document.createElement('div');
+    top_scores.setAttribute('class', 'top-scores');
+    let score_list = document.createElement('div');
+    score_list.setAttribute('class', 'score_ul');
+    let ordered_score_list = Object.keys(localStorage).sort((a, b) => localStorage[b] - localStorage[a]);
+    ordered_score_list.slice(0, 5).forEach((el) => {
+      let score = document.createElement('div');
+      score.setAttribute('class', 'score_li');
+      score.innerText = localStorage.getItem(el);
+      score_list.append(score);
+    });
+    top_scores.append(score_list);
+    highscores.append(top_scores);
+
   }
 
   welcomeScreen() {
@@ -263,8 +273,8 @@ export default class Game {
     let bottomText = '';
     text = 'Game paused. Press ESC to resume';
     bottomText = 'or click the button to start over';
-    this.ctx.fillText(text, this.width / 5, this.height - 500);
-    this.ctx.fillText(bottomText, this.width / 4 - 50, this.height - 400);
+    this.ctx.fillText(text, this.width / 6, this.height - 500);
+    this.ctx.fillText(bottomText, this.width / 5, this.height - 400);
     let restartButton = document.getElementById('restart');
     restartButton.style.display = 'block';
     restartButton.addEventListener('click', (e) => {
