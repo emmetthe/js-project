@@ -118,14 +118,15 @@ body {
 }
 
 #play_audio {
-  background: url("../imgs/play.png");
+  background: url("https://img.icons8.com/ios-filled/50/000000/play.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border: none;
-  width: 4.5vw;
-  height: 3vh;
+  width: 45px;
+  height: 45px;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 #play_audio:hover {
@@ -134,9 +135,9 @@ body {
 }
 
 #pause_audio {
-  background: url("../imgs/mute.png");
-  width: 1.7vw;
-  height: 3.1vh;
+  background: url("https://img.icons8.com/glyph-neue/50/000000/mute.png");
+  width: 45px;
+  height: 45px;
   background-repeat: no-repeat;
   background-size: cover;
   border: none;
